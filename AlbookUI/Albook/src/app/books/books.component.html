@@ -1,0 +1,16 @@
+<div class="books-container">
+    <div *ngFor="let book of books" class="book-card">
+      <div class="book-header">
+        <h2>{{ book.title }}</h2>
+        <h3>{{ book.author }}</h3>
+      </div>
+      <img [src]="book.coverUrl" alt="{{ book.title }}">
+      <div class="book-content">
+        <p>{{ book.description }}</p>
+      </div>
+      <div class="book-actions">
+        <button (click)="viewDetails(book.id)">View Details</button>
+      </div>
+    </div>
+  </div>
+  

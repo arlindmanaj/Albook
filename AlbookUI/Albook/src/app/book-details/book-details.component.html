@@ -1,0 +1,12 @@
+<div class="book-details-container" *ngIf="book">
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.author }}</h2>
+    <img [src]="book.coverUrl" alt="{{ book.title }}">
+    <p>{{ book.description }}</p>
+    <p><strong>Price:</strong> {{ book.price | currency }}</p>
+    <p><strong>Published At:</strong> {{ book.publishedAt | date }}</p>
+    <div class="book-details-actions">
+      <button (click)="buyBook()">Buy</button>
+    </div>
+  </div>
+  

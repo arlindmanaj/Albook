@@ -1,0 +1,31 @@
+.book-details-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .book-details-container h1 {
+    color: #d32f2f; /* Red color */
+  }
+  
+  .book-details-container img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .book-details-actions button {
+    background-color: #d32f2f; /* Red color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .book-details-actions button:hover {
+    background-color: #b71c1c; /* Darker red */
+  }
+  
