@@ -12,6 +12,7 @@
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    display: inline-block;
   }
   
   .book-card:hover {
@@ -24,15 +25,20 @@
     padding: 10px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    
   }
   
   .book-header h2 {
     margin: 0;
+    width: 100%;
+    height: auto;
+    font-size: 2em;
   }
   
   .book-header h3 {
     margin: 0;
     font-weight: normal;
+    font-size: 2em;
   }
   
   .book-content {
@@ -56,4 +62,7 @@
   .book-actions button:hover {
     background-color: #b71c1c; /* Darker red */
   }
-  
+  img{
+    width: 100%;
+    height: auto;
+  }

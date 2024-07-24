@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BookService } from '../book-services/book.service';
+import { Book } from '../book-models/book.model';
 
 @Component({
   selector: 'app-books',
@@ -8,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  books: any[] = [];
+  books: Book[] = [];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://your-api-url/api/books')
+    this.bookService.getAllBooks()
       .subscribe(data => {
         this.books = data;
       });

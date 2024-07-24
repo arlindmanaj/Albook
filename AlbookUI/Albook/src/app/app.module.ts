@@ -9,6 +9,11 @@ import { BooksComponent } from './books/books.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { LoginComponent } from './login/login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
+import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,15 +22,22 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     BooksComponent,
     BookDetailsComponent,
     LoginComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AddBookComponent,
+    EditBookComponent,
+    DeleteBookComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

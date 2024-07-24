@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth-services/auth.service';
+import { LoginRequest } from '../login-models/login-request.model';
 
 @Component({
   selector: 'app-login',
@@ -10,19 +11,24 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  error: string | null = null;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   login(): void {
-    this.http.post('http://your-api-url/api/auth/login', { username: this.username, password: this.password })
-      .subscribe(
-        (response: any) => {
-          localStorage.setItem('token', response.token); // Store the JWT token
-          this.router.navigate(['/admin']); // Navigate to admin dashboard
-        },
-        error => {
-          alert('Invalid credentials');
-        }
-      );
+    const loginRequest: LoginRequest = {
+      username: this.username,
+      password: this.password
+    };
+
+    this.authService.login(loginRequest).subscribe({
+      next: response => {
+        this.router.navigate(['/admin']);
+      },
+      error: err => {
+        this.error = 'Login failed. Please check your username and password.';
+        console.error('Login error', err);
+      }
+    });
   }
 }
