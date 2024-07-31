@@ -1,5 +1,7 @@
 ﻿using Albook.Models.Domain;
 using Albook.Repositories.Interfaces;
+using System.Security.Cryptography;
+using System.Text;
 
 
 
@@ -42,7 +44,8 @@ public class UserService
         {
             Username = model.Username,
             PasswordHash = model.PasswordHash, // Remember to hash passwords
-            Role = model.Role
+            Role = model.Role,
+            Email = model.Email
         };
 
         await _userRepository.AddUserAsync(user);
@@ -57,7 +60,12 @@ public class UserService
         await _userRepository.DeleteUserAsync(user);
         return true;
     }
-
+    private string HashPassword(string password)
+    {
+        using var sha256 = SHA256.Create();
+        var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return Convert.ToBase64String(hashedBytes);
+    }
     public async Task<bool> ChangeUserRoleAsync(int id, string newRole)
     {
         var user = await _userRepository.GetUserByIdAsync(id);

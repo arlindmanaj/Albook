@@ -14,6 +14,9 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
+import { AddUserComponent } from './Users/add-user/add-user.component';
+import { EditUserComponent } from './Users/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
     AddBookComponent,
     EditBookComponent,
     DeleteBookComponent,
+    ManageUsersComponent,
+    AddUserComponent,
+    EditUserComponent,
     
   ],
   imports: [

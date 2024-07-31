@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms'
 import { AddBookComponent } from './add-book/add-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
+import { AddUserComponent } from './Users/add-user/add-user.component';
+import { EditUserComponent } from './Users/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'books/add-book', component: AddBookComponent, canActivate: [AuthGuard] },
   { path: 'books/edit-book', component: EditBookComponent, canActivate: [AuthGuard]  },
   { path: 'books/delete-book', component: DeleteBookComponent, canActivate: [AuthGuard]  },
+  { path: 'admin/manage-users', component: ManageUsersComponent },
+  { path: 'admin/add-user', component: AddUserComponent },
+  { path: 'admin/edit-user/:id', component: EditUserComponent }
 
   //Wildcard route for handling unmatched routes
 

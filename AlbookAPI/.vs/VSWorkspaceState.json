@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Albook",
-    "\\Albook\\Data"
+    "\\Albook\\Data",
+    "\\Albook\\Models",
+    "\\Albook\\Models\\DTO"
   ],
-  "SelectedNode": "\\Albook\\Data\\ApplicationDbContext.cs",
+  "SelectedNode": "\\Albook\\Models\\DTO\\RegisterRequestDto.cs",
   "PreviewInSolutionExplorer": false
 }

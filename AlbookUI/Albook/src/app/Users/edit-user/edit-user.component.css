@@ -1,0 +1,46 @@
+.edit-user-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .edit-user-container h1 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+  }
+  
+  .edit-user-container form div {
+    margin-bottom: 15px;
+  }
+  
+  .edit-user-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .edit-user-container input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .edit-user-container select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .edit-user-container button {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .edit-user-container button:hover {
+    background-color: #b71c1c;
+  }
+  

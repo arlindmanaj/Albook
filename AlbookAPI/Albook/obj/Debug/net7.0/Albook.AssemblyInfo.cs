@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Albook")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+497eda9288312770cace69d5e1552a2a2852e37d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+995440e80b095b5f468c1abe5a69d68875c5213f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Albook")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Albook")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
