@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using Albook.Repositories.Interface;
+using System.Linq;
 
 namespace Albook.Controllers
 {
@@ -35,7 +36,10 @@ namespace Albook.Controllers
                     return Unauthorized();
                 }
                 _logger.LogInformation("Login successful for user {Username}", model.Username);
-                return Ok(loginResponse);
+                //LIND problemi ke qe e ke kthy direkt string token value, realisht duhesh me kthy objekt si nket rast
+                //un i thash veq new { } mirepo mundesh edhe me maru AuthResult, kqyre ne CurvProducing/Identity qysh ja boj,
+                //po edhe qehstu sosht gabim amo veq me msu
+                return Ok(new { token = loginResponse });
             }
             catch (Exception ex)
             {

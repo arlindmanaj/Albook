@@ -26,14 +26,18 @@ export class LoginComponent {
     console.log('Sending login request:', loginRequest);
 
     this.authService.login(loginRequest).subscribe({
-      next: (response: LoginResponse) => {
+      //qetu e ke prit si LoginResponse a nfaktikisht ne API e ke kthy veq string
+      //Tash ose munesh ne backend me e maru ni model sikur kjo LoginResponse
+      //Ose munesh ktu me prit si qysh e kom bo un po sdmth qe osht zgjidhja ma e mire (jo qe osht kiamet teknik asnjona) DW <3 keep going
+      //next: (response: LoginResponse) => {
+      next: (response: { token: string }) => {
         console.log('Login response received:', response);
         const token = response.token;
         if (token) {
           const decodedToken = this.decodeToken(token);
           console.log('Decoded token:', decodedToken);
           const role = decodedToken.role;
-  
+
           if (role === 'Admin') {
             localStorage.setItem('authToken', token);
             this.router.navigate(['/admin']);
@@ -45,15 +49,21 @@ export class LoginComponent {
       error: (err) => {
         this.error = 'Login failed. Please check your username and password.';
         console.error('Login error', err);
+        if (err.error instanceof ProgressEvent) {
+          console.error('ProgressEvent error:', err.message);
+        } else {
+          console.error('Response error:', err.error); // Inspect this to see if the response is malformed
+        }
       }
+
     });
   }
   private decodeToken(token: string): any {
-   try{
-    const payload = atob(token.split('.')[1]);
-    return JSON.parse(payload);
-   }
-    catch(e){
+    try {
+      const payload = atob(token.split('.')[1]);
+      return JSON.parse(payload);
+    }
+    catch (e) {
       console.error('Failed to decode token', e);
       return null;
     }
