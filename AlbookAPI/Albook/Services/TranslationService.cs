@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Transactions;
 
 namespace Albook.Services
 {
-    public class TranslationService
+    public class TranslationService : ITranslationService
     {
         private readonly ITranslationRepository _translationRepository;
 
@@ -39,5 +40,7 @@ namespace Albook.Services
         {
             return await _translationRepository.DeleteTranslationAsync(id);
         }
+
+       
     }
 }

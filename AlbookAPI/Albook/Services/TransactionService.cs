@@ -1,10 +1,11 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
 using System.Threading.Tasks;
 
 namespace Albook.Services
 {
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository _transactionRepository;
 

@@ -1,5 +1,6 @@
 ﻿using Albook.Models.DTO;
 using Albook.Models.Domain;
+using Albook.Repositories;
 using Albook.Repositories.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -10,10 +11,13 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Albook.Repositories.Interface;
 
 namespace Albook.Services
 {
-    public class AuthService
+ 
+    public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
@@ -46,11 +50,11 @@ namespace Albook.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
         public async Task<string> AuthenticateAsync(LoginRequestDto request)
         {
             try
             {
-               
                 var user = await _userRepository.GetUserByUsernameAsync(request.Username);
 
                 if (user == null || !VerifyPassword(request.Password, user.PasswordHash))
@@ -62,14 +66,14 @@ namespace Albook.Services
                 {
                     Subject = new ClaimsIdentity(new[]
                     {
-                        new Claim("id", user.UserId.ToString()),
-                        new Claim(ClaimTypes.Role, user.Role)
-                    }),
+                    new Claim("id", user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role)
+                }),
                     Expires = DateTime.UtcNow.AddDays(7),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-
+               
                 return tokenHandler.WriteToken(token);
             }
             catch (Exception ex)

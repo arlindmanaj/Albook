@@ -1,11 +1,12 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Albook.Services
 {
-    public class BookService
+    public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
 
@@ -38,5 +39,7 @@ namespace Albook.Services
         {
             return await _bookRepository.DeleteBookAsync(id);
         }
+
+       
     }
 }

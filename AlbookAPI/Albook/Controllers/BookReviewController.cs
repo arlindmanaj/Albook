@@ -1,4 +1,5 @@
 ﻿using Albook.Models.DTO;
+using Albook.Repositories.Interface;
 using Albook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,9 @@ namespace Albook.Controllers
     [Authorize]
     public class BookReviewsController : ControllerBase
     {
-        private readonly BookReviewService _bookReviewService;
+        private readonly IBookReviewService _bookReviewService;
 
-        public BookReviewsController(BookReviewService bookReviewService)
+        public BookReviewsController(IBookReviewService bookReviewService)
         {
             _bookReviewService = bookReviewService;
         }

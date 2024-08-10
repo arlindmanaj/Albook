@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace Albook.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BookService _bookService;
+        private readonly IBookService _bookService;
 
-        public BooksController(BookService bookService)
+        public BooksController(IBookService bookService)
         {
             _bookService = bookService;
         }

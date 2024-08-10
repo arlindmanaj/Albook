@@ -41,7 +41,19 @@ public static class DbInitializer
                     Language = "Shqip, Anglisht",
                     CoverUrl = "https://cronkitehhh.jmc.asu.edu/wp-content/uploads/2012/04/41lzLPREH1L._SS400_.jpg",
                     ContentUrl = "http://example.com/content2.pdf",
-                    Price = 15.99m,
+                    Price = 15,
+                    PublishedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now
+                },
+                new Book
+                {
+                    Title = "Influenca: Psikologjia e Bindjes",
+                    Author = "Robert Cialdini",
+                    Description = "Mesoni 6 menyra se si ne mashtrohemi dhe si psikologjia jon na bene preh e grackave per tu bindur nga tjetri.",
+                    Language = "Shqip, Anglisht",
+                    CoverUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT8HEW1auiQ9GGt92X1-fPAqEs1_OCh_7vrsWFdJ02yaerqwLJD",
+                    ContentUrl = "http://example.com/content2.pdf",
+                    Price = 13,
                     PublishedAt = DateTime.Now,
                     CreatedAt = DateTime.Now
                 }

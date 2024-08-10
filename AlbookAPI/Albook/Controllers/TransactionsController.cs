@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace Albook.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private readonly TransactionService _transactionService;
+        private readonly ITransactionService _transactionService;
 
-        public TransactionsController(TransactionService transactionService)
+        public TransactionsController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
         }

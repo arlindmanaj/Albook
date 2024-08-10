@@ -14,12 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(model: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/auth/login`, model)
-      .pipe(
-        tap(response => {
-          localStorage.setItem('token', response.token);
-        })
-      );
+    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/Auth/login`, model);
   }
 
   logout(): void {
@@ -32,5 +27,9 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
   }
 }

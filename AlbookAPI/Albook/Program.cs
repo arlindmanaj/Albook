@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
+using Albook.Repositories.Interface;
 
 namespace Albook
 {
@@ -31,12 +32,12 @@ namespace Albook
             builder.Services.AddScoped<IBookReviewRepository, BookReviewRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             // Register services
-            builder.Services.AddScoped<AuthService>();
-            builder.Services.AddScoped<BookService>();
-            builder.Services.AddScoped<TransactionService>();
-            builder.Services.AddScoped<TranslationService>();
-            builder.Services.AddScoped<BookReviewService>();
-            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+            builder.Services.AddScoped<ITranslationService, TranslationService>();
+            builder.Services.AddScoped<IBookReviewService, BookReviewService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             // Add authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace Albook.Controllers
     [ApiController]
     public class TranslationsController : ControllerBase
     {
-        private readonly TranslationService _translationService;
+        private readonly ITranslationService _translationService;
 
-        public TranslationsController(TranslationService translationService)
+        public TranslationsController(ITranslationService translationService)
         {
             _translationService = translationService;
         }

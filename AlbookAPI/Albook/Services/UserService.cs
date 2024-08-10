@@ -1,11 +1,12 @@
 ﻿using Albook.Models.Domain;
+using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
 using System.Security.Cryptography;
 using System.Text;
 
 
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
 
