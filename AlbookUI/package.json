@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@auth0/angular-jwt": "^5.2.0",
+    "angular-jwt": "github:auth0/angular-jwt"
+  }
+}

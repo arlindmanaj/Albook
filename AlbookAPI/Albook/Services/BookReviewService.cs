@@ -31,7 +31,7 @@ namespace Albook.Services
             }).ToList();
         }
 
-        public async Task<BookReviewDTO> GetBookReviewByIdAsync(int id)
+        public async Task<BookReviewDTO> GetBookReviewByIdAsync(string id)
         {
             var review = await _bookReviewRepository.GetBookReviewByIdAsync(id);
             if (review == null) return null;
@@ -60,7 +60,7 @@ namespace Albook.Services
             await _bookReviewRepository.AddBookReviewAsync(review);
         }
 
-        public async Task<bool> UpdateBookReviewAsync(int id, BookReviewDTO reviewDTO)
+        public async Task<bool> UpdateBookReviewAsync(string id, BookReviewDTO reviewDTO)
         {
             var review = await _bookReviewRepository.GetBookReviewByIdAsync(id);
             if (review == null) return false;
@@ -72,7 +72,7 @@ namespace Albook.Services
             return true;
         }
 
-        public async Task<bool> DeleteBookReviewAsync(int id)
+        public async Task<bool> DeleteBookReviewAsync(string id)
         {
             var review = await _bookReviewRepository.GetBookReviewByIdAsync(id);
             if (review == null) return false;

@@ -27,7 +27,7 @@ namespace Albook.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetBook(int id)
+        public async Task<IActionResult> GetBook(string id)
         {
             var book = await _bookService.GetBookByIdAsync(id);
             if (book == null)
@@ -46,7 +46,7 @@ namespace Albook.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
+        public async Task<IActionResult> UpdateBook(string id, [FromBody] Book book)
         {
             var updated = await _bookService.UpdateBookAsync(id, book);
             if (!updated)
@@ -57,7 +57,7 @@ namespace Albook.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteBook(int id)
+        public async Task<IActionResult> DeleteBook(string id)
         {
             var deleted = await _bookService.DeleteBookAsync(id);
             if (!deleted)

@@ -21,7 +21,7 @@ namespace Albook.Repositories.Implementation
             return await _context.Books.ToListAsync();
         }
 
-        public async Task<Book> GetBookByIdAsync(int bookId)
+        public async Task<Book> GetBookByIdAsync(string bookId)
         {
             return await _context.Books.FindAsync(bookId);
         }
@@ -32,7 +32,7 @@ namespace Albook.Repositories.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateBookAsync(int bookId, Book book)
+        public async Task<bool> UpdateBookAsync(string bookId, Book book)
         {
             var existingBook = await _context.Books.FindAsync(bookId);
             if (existingBook == null)
@@ -54,7 +54,7 @@ namespace Albook.Repositories.Implementation
             return true;
         }
 
-        public async Task<bool> DeleteBookAsync(int bookId)
+        public async Task<bool> DeleteBookAsync(string bookId)
         {
             var book = await _context.Books.FindAsync(bookId);
             if (book == null)

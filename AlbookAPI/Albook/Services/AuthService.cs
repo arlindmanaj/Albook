@@ -29,6 +29,7 @@ namespace Albook.Services
             _configuration = configuration;
             _logger = logger;
         }
+
         public string GenerateJwtToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -36,10 +37,10 @@ namespace Albook.Services
 
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.Role, user.Role)
-        };
+                new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, user.Role)
+            };
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
@@ -51,7 +52,7 @@ namespace Albook.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<string> AuthenticateAsync(LoginRequestDto request)
+        public async Task<LoginResponse> AuthenticateAsync(LoginRequestDto request)
         {
             try
             {
@@ -60,21 +61,11 @@ namespace Albook.Services
                 if (user == null || !VerifyPassword(request.Password, user.PasswordHash))
                     return null;
 
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new[]
-                    {
-                    new Claim("id", user.UserId.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role)
-                }),
-                    Expires = DateTime.UtcNow.AddDays(7),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-               
-                return tokenHandler.WriteToken(token);
+                
+                var token = GenerateJwtToken(user);
+                
+
+                return new LoginResponse { Token = token, Role = user.Role };
             }
             catch (Exception ex)
             {

@@ -8,6 +8,6 @@ namespace Albook.Repositories.Interface
         Task<UserDTO> GetUserByIdAsync(int id);
         Task<bool> AddUserAsync(User model);
         Task<bool> DeleteUserAsync(int id);
-        Task<bool> ChangeUserRoleAsync(int id, string newRole);
+        Task<bool> ChangeUserRoleAsync(int id, string newRole, string newUsername);
     }
 }

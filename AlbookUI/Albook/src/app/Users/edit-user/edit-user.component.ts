@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { RegisterRequest } from '../models/reqister-request.model';
 import { User } from '../models/user.model';
+import { ChangeRoleRequest } from '../models/change-role-request.model';
 
 @Component({
   selector: 'app-edit-user',
@@ -28,11 +29,10 @@ export class EditUserComponent implements OnInit {
   }
 
   editUser(): void {
-    const updatedUser: RegisterRequest = {
+    const updatedUser: ChangeRoleRequest = {
       username: this.username,
-      password: this.password,
       role: this.role,
-      email: this.email
+     
     };
 
     this.userService.updateUser(this.userId, updatedUser).subscribe(() => {

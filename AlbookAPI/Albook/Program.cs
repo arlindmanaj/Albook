@@ -101,7 +101,7 @@ namespace Albook
                         new List<string>()
                     }
                 });
-                        });
+            });
 
 
             var app = builder.Build();

@@ -8,4 +8,5 @@
 public class ChangeRoleRequest
 {
     public string Role { get; set; }
+    public string Username { get; set; }
 }

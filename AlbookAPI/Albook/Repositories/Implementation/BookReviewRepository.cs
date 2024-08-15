@@ -21,7 +21,7 @@ namespace Albook.Repositories.Implementation
             return await _context.BookReviews.ToListAsync();
         }
 
-        public async Task<BookReview> GetBookReviewByIdAsync(int id)
+        public async Task<BookReview> GetBookReviewByIdAsync(string id)
         {
             return await _context.BookReviews.FindAsync(id);
         }

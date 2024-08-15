@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth-services/auth.service';
 import { LoginRequest } from '../login-models/login-request.model';
 import { LoginResponse } from '../login-models/login-response.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -26,20 +27,20 @@ export class LoginComponent {
     console.log('Sending login request:', loginRequest);
 
     this.authService.login(loginRequest).subscribe({
-      //qetu e ke prit si LoginResponse a nfaktikisht ne API e ke kthy veq string
-      //Tash ose munesh ne backend me e maru ni model sikur kjo LoginResponse
-      //Ose munesh ktu me prit si qysh e kom bo un po sdmth qe osht zgjidhja ma e mire (jo qe osht kiamet teknik asnjona) DW <3 keep going
-      //next: (response: LoginResponse) => {
-      next: (response: { token: string }) => {
+
+      next: (response: LoginResponse) => {
         console.log('Login response received:', response);
         const token = response.token;
+        const role = response.role;
+        console.log("Role Check", role)
         if (token) {
           const decodedToken = this.decodeToken(token);
           console.log('Decoded token:', decodedToken);
-          const role = decodedToken.role;
-
+          const role = response.role;
+          console.log('ALLO', role)
           if (role === 'Admin') {
             localStorage.setItem('authToken', token);
+            console.log('Navigating to /admin');
             this.router.navigate(['/admin']);
           } else {
             this.error = 'Access denied. You do not have the necessary permissions.';
@@ -58,15 +59,31 @@ export class LoginComponent {
 
     });
   }
+
+  // private decodeToken(token: string): any {
+  //   try {
+  //     const payload = atob(token.split('.')[1]);
+  //     return JSON.parse(payload);
+  //   }
+  //   catch (e) {
+  //     console.error('Failed to decode token', e);
+  //     return null;
+  //   }
+  // }
   private decodeToken(token: string): any {
-    try {
-      const payload = atob(token.split('.')[1]);
-      return JSON.parse(payload);
+
+    if (token) {
+      const helper = new JwtHelperService();
+      try {
+        const decoded = helper.decodeToken(token) as string;
+        return decoded;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
     }
-    catch (e) {
-      console.error('Failed to decode token', e);
-      return null;
-    }
+
+    return null;
   }
 
 }

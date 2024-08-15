@@ -10,7 +10,13 @@ export class AdminDashboardComponent {
 
   constructor(private router: Router) { }
 
-  navigateTo(path: string): void {
+  navigateToUsers(path: string): void {
     this.router.navigate([`/admin/${path}`]);
+  }
+  navigateToBooks(path: string): void {
+    this.router.navigate([`books`]);
+  }
+  navigateToTranslations(path: string): void {
+    this.router.navigate([`/admin/translations`]);
   }
 }

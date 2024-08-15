@@ -1,4 +1,7 @@
 <div class="books-container">
+  <div *ngIf="isAdmin()" class="admin-actions">
+    <button (click)="addBook()">Add Book</button>
+  </div>
     <div *ngFor="let book of books" class="book-card">
       <div class="book-header">
         <h2>{{ book.title }}</h2>
@@ -10,6 +13,8 @@
       </div>
       <div class="book-actions">
         <button (click)="viewDetails(book.bookId)">View Details</button>
+        <button *ngIf="isAdmin()" (click)="editBook(book.bookId)">Edit</button>
+        <button *ngIf="isAdmin()" (click)="deleteBook(book.bookId)">Delete</button>
       </div>
     </div>
   </div>

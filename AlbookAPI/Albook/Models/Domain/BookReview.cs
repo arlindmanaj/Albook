@@ -10,7 +10,7 @@ namespace Albook.Models.Domain
         public int ReviewId { get; set; }
 
         [Required]
-        public int BookId { get; set; }
+        public string BookId { get; set; }
 
         [ForeignKey("BookId")]
         public Book Book { get; set; }

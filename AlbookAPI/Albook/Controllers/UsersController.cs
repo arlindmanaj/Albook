@@ -45,7 +45,7 @@ public class UsersController : ControllerBase
     [HttpPut("{id}/role")]
     public async Task<IActionResult> ChangeUserRole(int id, [FromBody] ChangeRoleRequest model)
     {
-        var result = await _userService.ChangeUserRoleAsync(id, model.Role);
+        var result = await _userService.ChangeUserRoleAsync(id, model.Role, model.Username);
 
         if (!result)
             return NotFound(new { message = "User not found" });

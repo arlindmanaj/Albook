@@ -8,7 +8,7 @@ namespace Albook.Models.DTO
         public int ReviewId { get; set; }
 
         [Required]
-        public int BookId { get; set; }
+        public string BookId { get; set; }
 
         [Required]
         public int UserId { get; set; }

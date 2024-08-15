@@ -5,9 +5,9 @@ namespace Albook.Repositories.Interface
     public interface IBookReviewService
     {
         Task<IEnumerable<BookReviewDTO>> GetBookReviewsAsync();
-        Task<BookReviewDTO> GetBookReviewByIdAsync(int id);
+        Task<BookReviewDTO> GetBookReviewByIdAsync(string id);
         Task AddBookReviewAsync(BookReviewDTO reviewDTO);
-        Task<bool> UpdateBookReviewAsync(int id, BookReviewDTO reviewDTO);
-        Task<bool> DeleteBookReviewAsync(int id);
+        Task<bool> UpdateBookReviewAsync(string id, BookReviewDTO reviewDTO);
+        Task<bool> DeleteBookReviewAsync(string id);
     }
 }

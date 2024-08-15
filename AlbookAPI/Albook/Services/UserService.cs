@@ -67,12 +67,13 @@ public class UserService : IUserService
         var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
         return Convert.ToBase64String(hashedBytes);
     }
-    public async Task<bool> ChangeUserRoleAsync(int id, string newRole)
+    public async Task<bool> ChangeUserRoleAsync(int id, string newRole, string newUsername)
     {
         var user = await _userRepository.GetUserByIdAsync(id);
         if (user == null) return false;
 
         user.Role = newRole;
+        user.Username = newUsername;
         await _userRepository.UpdateUserAsync(user);
         return true;
     }

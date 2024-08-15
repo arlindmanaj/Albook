@@ -28,7 +28,7 @@ namespace Albook.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BookReviewDTO>> GetBookReview(int id)
+        public async Task<ActionResult<BookReviewDTO>> GetBookReview(string id)
         {
             var review = await _bookReviewService.GetBookReviewByIdAsync(id);
             if (review == null) return NotFound();
@@ -44,7 +44,7 @@ namespace Albook.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateBookReview(int id, [FromBody] BookReviewDTO reviewDTO)
+        public async Task<ActionResult> UpdateBookReview(string id, [FromBody] BookReviewDTO reviewDTO)
         {
             var result = await _bookReviewService.UpdateBookReviewAsync(id, reviewDTO);
             if (!result) return NotFound();
@@ -53,7 +53,7 @@ namespace Albook.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteBookReview(int id)
+        public async Task<ActionResult> DeleteBookReview(string id)
         {
             var result = await _bookReviewService.DeleteBookReviewAsync(id);
             if (!result) return NotFound();

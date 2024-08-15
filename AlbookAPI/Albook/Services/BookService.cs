@@ -20,7 +20,7 @@ namespace Albook.Services
             return await _bookRepository.GetBooksAsync();
         }
 
-        public async Task<Book> GetBookByIdAsync(int id)
+        public async Task<Book> GetBookByIdAsync(string id)
         {
             return await _bookRepository.GetBookByIdAsync(id);
         }
@@ -30,12 +30,12 @@ namespace Albook.Services
             await _bookRepository.AddBookAsync(book);
         }
 
-        public async Task<bool> UpdateBookAsync(int id, Book book)
+        public async Task<bool> UpdateBookAsync(string id, Book book)
         {
             return await _bookRepository.UpdateBookAsync(id, book);
         }
 
-        public async Task<bool> DeleteBookAsync(int id)
+        public async Task<bool> DeleteBookAsync(string id)
         {
             return await _bookRepository.DeleteBookAsync(id);
         }

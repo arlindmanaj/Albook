@@ -33,7 +33,7 @@ export class UserService {
     return this.http.get<User>(`${environment.apiBaseUrl}/api/Users/${id}`);
   }
 
-  updateUser(id: number, model: RegisterRequest): Observable<void> {
-    return this.http.put<void>(`${environment.apiBaseUrl}/api/Users/${id}`, model);
+  updateUser(id: number, model: ChangeRoleRequest): Observable<void> {
+    return this.http.put<void>(`${environment.apiBaseUrl}/api/Users/${id}/role`, model);
   }
 }
