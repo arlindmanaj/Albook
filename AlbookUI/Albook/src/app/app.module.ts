@@ -17,6 +17,7 @@ import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { EditUserComponent } from './Users/edit-user/edit-user.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EditUserComponent } from './Users/edit-user/edit-user.component';
     ManageUsersComponent,
     AddUserComponent,
     EditUserComponent,
+    NavbarComponent,
     
   ],
   imports: [

@@ -24,6 +24,7 @@ export class EditBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.bookService.getBookById(this.bookId)
       .subscribe((book: Book) => {
         this.title = book.title;

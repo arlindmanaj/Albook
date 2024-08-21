@@ -21,11 +21,11 @@ export class BooksComponent implements OnInit {
       });
   }
   addBook(): void {
-    this.router.navigate(['/add-book']);
+    this.router.navigate(['admin/add-book']);
   }
 
   editBook(id: string): void {
-    this.router.navigate(['/edit-book', id]);
+    this.router.navigate(['admin/edit-book', id]);
   }
   viewDetails(id: string): void {
     this.router.navigate(['/books', id]);
@@ -39,21 +39,18 @@ export class BooksComponent implements OnInit {
   }
 
   public isAdmin(): boolean {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      return decodedToken.role === 'Admin';
-    }
-    return false;
+    const role = localStorage.getItem('userRole');
+    console.log('Retrieved role from localStorage:', role);
+    return role === 'Admin';
   }
   private decodeToken(token: string): any {
-     try {
-       const payload = atob(token.split('.')[1]);
-       return JSON.parse(payload);
-       }
-      catch (e) {
-        console.error('Failed to decode token', e);
-        return null;
-    } 
+    try {
+      const payload = atob(token.split('.')[1]);
+      return JSON.parse(payload);
+    }
+    catch (e) {
+      console.error('Failed to decode token', e);
+      return null;
+    }
   }
 }

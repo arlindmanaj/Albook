@@ -20,6 +20,7 @@ export class AddBookComponent {
   constructor(private bookService: BookService, private router: Router) { }
 
   addBook(): void {
+    
     const book: AddBookRequest = {
       title: this.title,
       author: this.author,
@@ -29,7 +30,8 @@ export class AddBookComponent {
       contentUrl: this.contentUrl,
       price: this.price
     };
-
+   
+  
     this.bookService.addBook(book)
       .subscribe(() => {
         this.router.navigate(['/books']);

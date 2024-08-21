@@ -40,6 +40,7 @@ export class LoginComponent {
           console.log('ALLO', role)
           if (role === 'Admin') {
             localStorage.setItem('authToken', token);
+            localStorage.setItem('userRole', role);
             console.log('Navigating to /admin');
             this.router.navigate(['/admin']);
           } else {

@@ -14,7 +14,11 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   addBook(model: AddBookRequest): Observable<void> {
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/Books`, model);
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+    return this.http.post<void>(`${environment.apiBaseUrl}/api/Books`, model, { headers });
   }
 
   getAllBooks(): Observable<Book[]> {
@@ -22,14 +26,26 @@ export class BookService {
   }
 
   getBookById(id: string): Observable<Book> {
-    return this.http.get<Book>(`${environment.apiBaseUrl}/api/Books/${id}`);
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+    return this.http.get<Book>(`${environment.apiBaseUrl}/api/Books/${id}`, { headers });
   }
 
   updateBook(id: string, updateBookRequest: UpdateBookRequest): Observable<Book> {
-    return this.http.put<Book>(`${environment.apiBaseUrl}/api/Books/${id}`, updateBookRequest);
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+    return this.http.put<Book>(`${environment.apiBaseUrl}/api/Books/${id}`, updateBookRequest, { headers });
   }
 
   deleteBook(id: string): Observable<void> {
-    return this.http.delete<void>(`${environment.apiBaseUrl}/api/Books/${id}`);
+    const token = localStorage.getItem('authToken');
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+    return this.http.delete<void>(`${environment.apiBaseUrl}/api/Books/${id}`, { headers });
   }
 }

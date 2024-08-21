@@ -12,5 +12,9 @@
         public decimal Price { get; set; }
         public DateTime PublishedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public ICollection<BookReview> BookReviews { get; set; }
+        public ICollection<Transaction> Transactions{ get; set; }
+        public ICollection<Translation> Translations{ get; set; }
+
     }
 }

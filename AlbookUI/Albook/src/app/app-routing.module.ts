@@ -20,13 +20,14 @@ const routes: Routes = [
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'books/add-book', component: AddBookComponent, canActivate: [AuthGuard] },
   { path: 'books/edit-book', component: EditBookComponent, canActivate: [AuthGuard]  },
   { path: 'books/delete-book', component: DeleteBookComponent, canActivate: [AuthGuard]  },
   { path: 'admin/manage-users', component: ManageUsersComponent },
   { path: 'admin/add-user', component: AddUserComponent },
-  { path: 'admin/edit-user/:id', component: EditUserComponent }
-
+  { path: 'admin/edit-user/:id', component: EditUserComponent },
+  { path: 'admin/add-book', component: AddBookComponent, canActivate: [AuthGuard] },
+  { path: 'admin/edit-book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
+  { path: 'books/:id', component: BookDetailsComponent },
   //Wildcard route for handling unmatched routes
 
   
