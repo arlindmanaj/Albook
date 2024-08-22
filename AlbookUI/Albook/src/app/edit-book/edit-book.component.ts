@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { UpdateBookRequest } from '../book-models/update-book-request.model';
 import { Book } from '../book-models/book.model';
+import { CategoryService, Category } from '../categories/category.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -18,13 +19,15 @@ export class EditBookComponent implements OnInit {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
+  categoryId!: number;
+  categories: Category[] = [];
 
-  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) {
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
     this.bookId = this.route.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
-    
+
     this.bookService.getBookById(this.bookId)
       .subscribe((book: Book) => {
         this.title = book.title;
@@ -34,7 +37,12 @@ export class EditBookComponent implements OnInit {
         this.coverUrl = book.coverUrl;
         this.contentUrl = book.contentUrl;
         this.price = book.price;
+        this.categoryId = book.categoryId;
       });
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
+
   }
 
   editBook(): void {
@@ -45,7 +53,8 @@ export class EditBookComponent implements OnInit {
       language: this.language,
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
-      price: this.price
+      price: this.price,
+      categoryId: this.categoryId
     };
 
     this.bookService.updateBook(this.bookId, book)

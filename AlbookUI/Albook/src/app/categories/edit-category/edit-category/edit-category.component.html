@@ -1,0 +1,9 @@
+<div class="edit-category-container">
+    <h1>Edit Category</h1>
+    <form (submit)="editCategory()">
+      <label for="name">Category Name</label>
+      <input type="text" id="name" [(ngModel)]="name" name="name" required>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+  

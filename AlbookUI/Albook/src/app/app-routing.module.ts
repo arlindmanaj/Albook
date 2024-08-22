@@ -13,9 +13,12 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
 import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { EditUserComponent } from './Users/edit-user/edit-user.component';
+import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'books', component: BooksComponent },
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'login', component: LoginComponent },
@@ -28,6 +31,10 @@ const routes: Routes = [
   { path: 'admin/add-book', component: AddBookComponent, canActivate: [AuthGuard] },
   { path: 'admin/edit-book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
   { path: 'books/:id', component: BookDetailsComponent },
+  { path: 'admin/manage-categories', component: ManageCategoriesComponent },
+  {path: 'admin/add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'admin/edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
+
   //Wildcard route for handling unmatched routes
 
   
@@ -35,6 +42,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), FormsModule],
-  exports: [RouterModule, FormsModule]
+  
+exports: [RouterModule, FormsModule]
 })
 export class AppRoutingModule { }

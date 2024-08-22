@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import { CategoryService, Category } from '../../category.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-manage-categories',
+  templateUrl: './manage-categories.component.html',
+  styleUrls: ['./manage-categories.component.css']
+})
+export class ManageCategoriesComponent implements OnInit {
+  categories: Category[] = [];
+
+  constructor(private categoryService: CategoryService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
+  }
+
+  addCategory(): void {
+    this.router.navigate(['/admin/add-category']);
+  }
+
+  editCategory(categoryId: number): void {
+    this.router.navigate(['/admin/edit-category', categoryId]);
+  }
+
+  deleteCategory(categoryId: number): void {
+    if (confirm('Are you sure you want to delete this category?')) {
+      this.categoryService.deleteCategory(categoryId).subscribe(() => {
+        this.loadCategories();
+      });
+    }
+  }
+}

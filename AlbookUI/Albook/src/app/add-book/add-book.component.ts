@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { AddBookRequest } from '../book-models/add-book-request.model';
-
+import { CategoryService } from '../categories/category.service';
+import { Category } from './../categories/category.service';
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
@@ -16,9 +17,15 @@ export class AddBookComponent {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
+  categoryId!: number;
+  categories: Category[] = [];
 
-  constructor(private bookService: BookService, private router: Router) { }
-
+  constructor(private bookService: BookService, private router: Router, private categoryService: CategoryService) { }
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
+  }
   addBook(): void {
     
     const book: AddBookRequest = {
@@ -28,7 +35,8 @@ export class AddBookComponent {
       language: this.language,
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
-      price: this.price
+      price: this.price,
+      categoryId: this.categoryId
     };
    
   

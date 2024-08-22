@@ -19,4 +19,7 @@ export class AdminDashboardComponent {
   navigateToTranslations(path: string): void {
     this.router.navigate([`/admin/translations`]);
   }
+  navigateToCategories(path: string): void {
+    this.router.navigate([`/admin/manage-categories`]);
+  }
 }

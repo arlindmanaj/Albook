@@ -6,5 +6,6 @@ export interface AddBookRequest {
     coverUrl: string;
     contentUrl: string;
     price: number;
+    categoryId: number;
   }
   

@@ -31,6 +31,9 @@ namespace Albook
             builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
             builder.Services.AddScoped<IBookReviewRepository, BookReviewRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+           
+
             // Register services
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IBookService, BookService>();
@@ -38,6 +41,7 @@ namespace Albook
             builder.Services.AddScoped<ITranslationService, TranslationService>();
             builder.Services.AddScoped<IBookReviewService, BookReviewService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             // Add authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -72,6 +76,7 @@ namespace Albook
                  };
              });
 
+           
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddAuthorization();

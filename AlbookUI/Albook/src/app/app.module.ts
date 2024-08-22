@@ -18,6 +18,9 @@ import { ManageUsersComponent } from './Users/manage-users/manage-users.componen
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { EditUserComponent } from './Users/edit-user/edit-user.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
     AddUserComponent,
     EditUserComponent,
     NavbarComponent,
+    ManageCategoriesComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
     
   ],
   imports: [

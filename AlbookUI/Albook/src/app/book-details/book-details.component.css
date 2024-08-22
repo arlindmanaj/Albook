@@ -28,4 +28,16 @@
   .book-details-actions button:hover {
     background-color: #b71c1c; /* Darker red */
   }
+  .book-category-tag {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
   

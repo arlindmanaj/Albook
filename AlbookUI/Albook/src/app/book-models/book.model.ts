@@ -9,5 +9,7 @@ export interface Book {
     price: number;
     publishedAt: Date;
     createdAt: Date;
+    categoryId: number;
+    categoryName: string;
   }
   

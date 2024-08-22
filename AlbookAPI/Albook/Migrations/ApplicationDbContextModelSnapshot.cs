@@ -32,6 +32,9 @@ namespace Albook.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ContentUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,6 +61,8 @@ namespace Albook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
                 });
@@ -92,6 +97,22 @@ namespace Albook.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("BookReviews");
+                });
+
+            modelBuilder.Entity("Albook.Models.Domain.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
@@ -182,6 +203,13 @@ namespace Albook.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Albook.Models.Domain.Book", b =>
+                {
+                    b.HasOne("Albook.Models.Domain.Category", null)
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId");
+                });
+
             modelBuilder.Entity("Albook.Models.Domain.BookReview", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", "Book")
@@ -235,6 +263,11 @@ namespace Albook.Migrations
                     b.Navigation("Transactions");
 
                     b.Navigation("Translations");
+                });
+
+            modelBuilder.Entity("Albook.Models.Domain.Category", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.User", b =>

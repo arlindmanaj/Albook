@@ -3,6 +3,10 @@
     <button (click)="addBook()">Add Book</button>
   </div>
     <div *ngFor="let book of books" class="book-card">
+      <div class="book-category-tag">
+        {{ book.categoryName }}
+      </div>
+
       <div class="book-header">
         <h2>{{ book.title }}</h2>
         <h3>{{ book.author }}</h3>

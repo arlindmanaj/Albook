@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Albook.Models.Domain;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Albook.Data
 {
@@ -13,6 +14,7 @@ namespace Albook.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Translation> Translations { get; set; }
         public DbSet<BookReview> BookReviews { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

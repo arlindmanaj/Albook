@@ -1,4 +1,8 @@
 <div class="book-details-container" *ngIf="book">
+  <div class="book-category-tag">
+    {{ book.categoryName }}
+  </div>
+
     <h1>{{ book.title }}</h1>
     <h2>{{ book.author }}</h2>
     <img [src]="book.coverUrl" alt="{{ book.title }}">
