@@ -1,6 +1,5 @@
 ﻿using Albook.Models.DTO;
-using Albook.Repositories.Interface;
-using Microsoft.AspNetCore.Http;
+using Albook.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Albook.Controllers

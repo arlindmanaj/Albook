@@ -1,12 +1,6 @@
 ﻿using Albook.Models.DTO;
-using Albook.Models.Domain;
-using Albook.Services;
+using Albook.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using Albook.Repositories.Interface;
-using System.Linq;
 
 namespace Albook.Controllers
 {
@@ -22,7 +16,7 @@ namespace Albook.Controllers
             _authService = authService;
             _logger = logger;
         }
-          
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {

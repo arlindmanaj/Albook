@@ -21,7 +21,11 @@ export class ManageCategoriesComponent implements OnInit {
       this.categories = data;
     });
   }
-
+  getCategoryById(categoryId: number): void {
+    this.categoryService.getCategoryById(categoryId).subscribe(data => {
+      this.categories = [data];
+    });
+  }
   addCategory(): void {
     this.router.navigate(['/admin/add-category']);
   }

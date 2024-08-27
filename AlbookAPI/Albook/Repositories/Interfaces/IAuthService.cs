@@ -1,7 +1,7 @@
 ﻿using Albook.Models.Domain;
 using Albook.Models.DTO;
 
-namespace Albook.Repositories.Interface
+namespace Albook.Repositories.Interfaces
 {
     public interface IAuthService
     {

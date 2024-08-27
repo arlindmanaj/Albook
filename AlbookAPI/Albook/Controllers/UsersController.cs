@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Albook.Models.Domain;
-using Albook.Repositories.Interface;
+﻿using Albook.Models.Domain;
+using Albook.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]

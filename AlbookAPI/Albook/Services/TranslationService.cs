@@ -1,9 +1,5 @@
 ﻿using Albook.Models.Domain;
-using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace Albook.Services
 {
@@ -41,6 +37,6 @@ namespace Albook.Services
             return await _translationRepository.DeleteTranslationAsync(id);
         }
 
-       
+
     }
 }

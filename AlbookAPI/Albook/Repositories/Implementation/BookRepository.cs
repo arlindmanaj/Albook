@@ -2,8 +2,6 @@
 using Albook.Models.Domain;
 using Albook.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Albook.Repositories.Implementation
 {
@@ -21,15 +19,18 @@ namespace Albook.Repositories.Implementation
             return await _context.Books.ToListAsync();
         }
 
+        //FIX
         public async Task<Book> GetBookByIdAsync(string bookId)
         {
-            return await _context.Books.FindAsync(bookId);
-        }
+            return await _context.Books.FirstOrDefaultAsync(x => x.BookId == bookId);
+        }//.Include(x => x.Categories)
 
-        public async Task AddBookAsync(Book book)
+        public async Task<Book> AddBookAsync(Book book)
         {
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
+
+            return book;
         }
 
         public async Task<bool> UpdateBookAsync(string bookId, Book book)

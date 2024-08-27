@@ -1,10 +1,7 @@
 ﻿using Albook.Models.Domain;
-using Albook.Repositories.Interface;
-using Albook.Services;
+using Albook.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Albook.Controllers
 {
@@ -40,7 +37,7 @@ namespace Albook.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddBook([FromBody] Book book)
         {
-            await _bookService.AddBookAsync(book);
+            //await _bookService.AddBookAsync(book);
             return Ok(new { message = "Book added successfully." });
         }
 
@@ -48,9 +45,9 @@ namespace Albook.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateBook(string id, [FromBody] Book book)
         {
-            var updated = await _bookService.UpdateBookAsync(id, book);
-            if (!updated)
-                return NotFound();
+            //var updated = await _bookService.UpdateBookAsync(id, book);
+            //if (!updated)
+            //    return NotFound();
 
             return Ok(new { message = "Book updated successfully." });
         }

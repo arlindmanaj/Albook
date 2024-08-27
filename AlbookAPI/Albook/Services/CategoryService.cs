@@ -1,21 +1,18 @@
 ﻿using Albook.Models.Domain;
 using Albook.Models.DTO;
-using Albook.Repositories.Implementation;
-using Albook.Repositories.Interface;
-
-using System.Security.AccessControl;
+using Albook.Repositories.Interfaces;
 
 namespace Albook.Services
 {
     public class CategoryService : ICategoryService
     {
-       private readonly ICategoryRepository _categoryRepository;
-        
+        private readonly ICategoryRepository _categoryRepository;
+
 
         public CategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
-           
+
         }
         public async Task<CategoryDto> AddCategoryAsync(CreateCategoryDto categoryDto)
         {
@@ -23,7 +20,7 @@ namespace Albook.Services
             var category = new Category
             {
                 Name = categoryDto.Name
-               
+
             }; // KQYR A MUNET MU KON PROBLEM NDRRIMI I PARAMETRIT PREJ CATEGORY N'CREATECATEGORY
 
             var newCategory = await _categoryRepository.AddCategoryAsync(category);
@@ -33,7 +30,7 @@ namespace Albook.Services
             {
                 CategoryId = newCategory.CategoryId,
                 Name = newCategory.Name,
-                
+
             };
         }
 
@@ -49,7 +46,7 @@ namespace Albook.Services
                 {
                     CategoryId = category.CategoryId,
                     Name = category.Name,
-                    
+
                 });
             }
 
@@ -70,7 +67,7 @@ namespace Albook.Services
             {
                 CategoryId = category.CategoryId,
                 Name = category.Name,
-                
+
             };
         }
 
@@ -79,18 +76,18 @@ namespace Albook.Services
             var existingCategory = await _categoryRepository.GetCategoryByIdAsync(categoryId);
             if (existingCategory == null) return null;
 
-           
+
             existingCategory.Name = updateCategoryDto.Name;
 
-          
+
             await _categoryRepository.UpdateCategoryAsync(existingCategory);
 
-            
+
             var updatedCategoryDto = new CategoryDto
             {
                 CategoryId = existingCategory.CategoryId,
                 Name = existingCategory.Name
-               
+
             };
 
             return updatedCategoryDto;
@@ -108,11 +105,11 @@ namespace Albook.Services
         }
 
 
-       
 
-       
+
+
     }
 
-   
-    
+
+
 }

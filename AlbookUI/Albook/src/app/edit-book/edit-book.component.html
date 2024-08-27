@@ -31,7 +31,7 @@
       </div>
       <div>
         <label for="category">Category</label>
-        <select id="category" [(ngModel)]="categoryId" name="categoryId" required>
+        <select id="category" [(ngModel)]="categoryName" name="categoryId" required>
           <option *ngFor="let category of categories" [value]="category.categoryId">
             {{ category.name }}
           </option>

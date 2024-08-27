@@ -1,10 +1,6 @@
 ﻿using Albook.Models.Domain;
 using Albook.Models.DTO;
-using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Albook.Services
 {

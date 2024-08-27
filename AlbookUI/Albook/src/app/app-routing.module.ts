@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'admin/edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
 
   //Wildcard route for handling unmatched routes
-
+  {path: '', component: HomeComponent},
   
 ];
 

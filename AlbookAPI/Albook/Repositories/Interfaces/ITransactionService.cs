@@ -1,6 +1,6 @@
 ﻿using Albook.Models.Domain;
 
-namespace Albook.Repositories.Interface
+namespace Albook.Repositories.Interfaces
 {
     public interface ITransactionService
     {

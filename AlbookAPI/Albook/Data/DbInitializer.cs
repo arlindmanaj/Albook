@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using Albook.Data;
+﻿using Albook.Data;
 using Albook.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 public static class DbInitializer
 {
     public static void Initialize(IServiceProvider serviceProvider)

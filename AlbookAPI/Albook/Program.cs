@@ -1,14 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using Albook.Data;
-using Albook.Repositories.Interfaces;
 using Albook.Repositories.Implementation;
+using Albook.Repositories.Interfaces;
 using Albook.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
-using Albook.Repositories.Interface;
+using System.Text;
 
 namespace Albook
 {
@@ -32,7 +31,8 @@ namespace Albook
             builder.Services.AddScoped<IBookReviewRepository, BookReviewRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-           
+            builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+
 
             // Register services
             builder.Services.AddScoped<IAuthService, AuthService>();
@@ -76,7 +76,7 @@ namespace Albook
                  };
              });
 
-           
+
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddAuthorization();
@@ -110,7 +110,7 @@ namespace Albook
 
 
             var app = builder.Build();
-            
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

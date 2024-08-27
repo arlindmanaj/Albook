@@ -19,7 +19,7 @@ export class EditBookComponent implements OnInit {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
-  categoryId!: number;
+  categoryName: string = '';
   categories: Category[] = [];
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
@@ -27,9 +27,11 @@ export class EditBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log('Editing Book ID:', this.bookId);
     this.bookService.getBookById(this.bookId)
       .subscribe((book: Book) => {
+
+        console.log('Book Data Retrieved:', book);
         this.title = book.title;
         this.author = book.author;
         this.description = book.description;
@@ -37,9 +39,11 @@ export class EditBookComponent implements OnInit {
         this.coverUrl = book.coverUrl;
         this.contentUrl = book.contentUrl;
         this.price = book.price;
-        this.categoryId = book.categoryId;
+        this.categoryName = book.categoryName;
+        console.log('Book Category Name:', this.categoryName);
       });
     this.categoryService.getCategories().subscribe(data => {
+      console.log('Categories Retrieved:', data);
       this.categories = data;
     });
 
@@ -54,12 +58,17 @@ export class EditBookComponent implements OnInit {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categoryId: this.categoryId
+      categoryName: this.categoryName
     };
+    console.log('Book Data to Update:', book);
 
     this.bookService.updateBook(this.bookId, book)
       .subscribe(() => {
+        console.log('Book successfully updated, navigating to /books');
         this.router.navigate(['/books']);
+      }, error =>{
+        console.error('Error updating book:', error);
       });
   }
 }
+

@@ -1,10 +1,7 @@
 ﻿using Albook.Models.Domain;
-using Albook.Repositories.Interface;
-using Albook.Services;
+using Albook.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Albook.Controllers
 {

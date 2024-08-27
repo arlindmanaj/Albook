@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { Book } from '../book-models/book.model';
 import { AuthService } from '../auth-services/auth.service';
+import { Category } from '../categories/category.service';
 
 @Component({
   selector: 'app-books',

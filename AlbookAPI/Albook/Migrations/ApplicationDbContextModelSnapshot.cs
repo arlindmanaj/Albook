@@ -32,9 +32,6 @@ namespace Albook.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ContentUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -61,8 +58,6 @@ namespace Albook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
                 });
@@ -97,6 +92,29 @@ namespace Albook.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("BookReviews");
+                });
+
+            modelBuilder.Entity("Albook.Models.Domain.BooksCategories", b =>
+                {
+                    b.Property<int>("BookCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookCategoryId"));
+
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookCategoryId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("BooksCategories", (string)null);
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Category", b =>
@@ -203,13 +221,6 @@ namespace Albook.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Albook.Models.Domain.Book", b =>
-                {
-                    b.HasOne("Albook.Models.Domain.Category", null)
-                        .WithMany("Books")
-                        .HasForeignKey("CategoryId");
-                });
-
             modelBuilder.Entity("Albook.Models.Domain.BookReview", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", "Book")
@@ -226,6 +237,23 @@ namespace Albook.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Albook.Models.Domain.BooksCategories", b =>
+                {
+                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                        .WithMany("BooksCategories")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("Albook.Models.Domain.Category", "Category")
+                        .WithMany("BooksCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
@@ -260,6 +288,8 @@ namespace Albook.Migrations
                 {
                     b.Navigation("BookReviews");
 
+                    b.Navigation("BooksCategories");
+
                     b.Navigation("Transactions");
 
                     b.Navigation("Translations");
@@ -267,7 +297,7 @@ namespace Albook.Migrations
 
             modelBuilder.Entity("Albook.Models.Domain.Category", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("BooksCategories");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.User", b =>

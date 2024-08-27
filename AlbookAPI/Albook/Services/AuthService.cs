@@ -1,22 +1,15 @@
-﻿using Albook.Models.DTO;
-using Albook.Models.Domain;
-using Albook.Repositories;
+﻿using Albook.Models.Domain;
+using Albook.Models.DTO;
 using Albook.Repositories.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Albook.Repositories.Interface;
 
 namespace Albook.Services
 {
- 
+
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
@@ -61,9 +54,9 @@ namespace Albook.Services
                 if (user == null || !VerifyPassword(request.Password, user.PasswordHash))
                     return null;
 
-                
+
                 var token = GenerateJwtToken(user);
-                
+
 
                 return new LoginResponse { Token = token, Role = user.Role };
             }

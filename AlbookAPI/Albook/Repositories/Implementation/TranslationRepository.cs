@@ -2,8 +2,6 @@
 using Albook.Models.Domain;
 using Albook.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Albook.Repositories.Implementation
 {

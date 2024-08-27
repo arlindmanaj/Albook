@@ -1,7 +1,5 @@
 ﻿using Albook.Models.Domain;
-using Albook.Repositories.Interface;
 using Albook.Repositories.Interfaces;
-using System.Threading.Tasks;
 
 namespace Albook.Services
 {
