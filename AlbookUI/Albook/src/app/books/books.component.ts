@@ -12,6 +12,7 @@ import { Category } from '../categories/category.service';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+  categories: Category[] = [];
 
   constructor(private bookService: BookService, private router: Router, private authService: AuthService) { }
 

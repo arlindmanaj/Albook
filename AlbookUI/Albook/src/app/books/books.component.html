@@ -2,24 +2,25 @@
   <div *ngIf="isAdmin()" class="admin-actions">
     <button (click)="addBook()">Add Book</button>
   </div>
-    <div *ngFor="let book of books" class="book-card">
-      <div class="book-category-tag">
-        {{ book.categoryName }}
-      </div>
+  <div *ngFor="let book of books" class="book-card">
+    <div class="book-category-tag">
+      <span *ngFor="let category of book.categories" class="book-category-tag">
+        {{ category.name }}
+      </span>
+    </div>
 
-      <div class="book-header">
-        <h2>{{ book.title }}</h2>
-        <h3>{{ book.author }}</h3>
-      </div>
-      <img [src]="book.coverUrl" alt="{{ book.title }}">
-      <div class="book-content">
-        <p>{{ book.description }}</p>
-      </div>
-      <div class="book-actions">
-        <button (click)="viewDetails(book.bookId)">View Details</button>
-        <button *ngIf="isAdmin()" (click)="editBook(book.bookId)">Edit</button>
-        <button *ngIf="isAdmin()" (click)="deleteBook(book.bookId)">Delete</button>
-      </div>
+    <div class="book-header">
+      <h2>{{ book.title }}</h2>
+      <h3>{{ book.author }}</h3>
+    </div>
+    <img [src]="book.coverUrl" alt="{{ book.title }}">
+    <div class="book-content">
+      <p>{{ book.description }}</p>
+    </div>
+    <div class="book-actions">
+      <button (click)="viewDetails(book.bookId)">View Details</button>
+      <button *ngIf="isAdmin()" (click)="editBook(book.bookId)">Edit</button>
+      <button *ngIf="isAdmin()" (click)="deleteBook(book.bookId)">Delete</button>
     </div>
   </div>
-  
+</div>

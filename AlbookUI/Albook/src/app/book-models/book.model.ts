@@ -1,15 +1,16 @@
-export interface Book {
-    bookId: string;
-    title: string;
-    author: string;
-    description: string;
-    language: string;
-    coverUrl: string;
-    contentUrl: string;
-    price: number;
-    publishedAt: Date;
-    createdAt: Date;
+import { Category } from "../categories/category.service";
 
-    categoryName: string;
-  }
-  
+export interface Book {
+  bookId: string;
+  title: string;
+  author: string;
+  description: string;
+  language: string;
+  coverUrl: string;
+  contentUrl: string;
+  price: number;
+  publishedAt: Date;
+  createdAt: Date;
+
+  categories: Category[];
+}

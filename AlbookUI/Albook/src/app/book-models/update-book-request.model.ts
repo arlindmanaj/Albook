@@ -1,3 +1,5 @@
+import { Category } from "../categories/category.service";
+
 export interface UpdateBookRequest {
     title: string;
     author: string;
@@ -6,6 +8,6 @@ export interface UpdateBookRequest {
     coverUrl: string;
     contentUrl: string;
     price: number;
-    categoryName: string;
+    categories: Category[];
   }
   

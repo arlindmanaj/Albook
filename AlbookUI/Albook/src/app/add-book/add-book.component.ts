@@ -17,7 +17,7 @@ export class AddBookComponent {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
-  categoryId!: number;
+
   categories: Category[] = [];
 
   constructor(private bookService: BookService, private router: Router, private categoryService: CategoryService) { }
@@ -36,7 +36,7 @@ export class AddBookComponent {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categoryId: this.categoryId
+      categories: this.categories
     };
    
   

@@ -19,7 +19,6 @@ export class EditBookComponent implements OnInit {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
-  categoryName: string = '';
   categories: Category[] = [];
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
@@ -39,8 +38,8 @@ export class EditBookComponent implements OnInit {
         this.coverUrl = book.coverUrl;
         this.contentUrl = book.contentUrl;
         this.price = book.price;
-        this.categoryName = book.categoryName;
-        console.log('Book Category Name:', this.categoryName);
+        this.categories = book.categories;
+        console.log('Book Category Name:', this.categories);
       });
     this.categoryService.getCategories().subscribe(data => {
       console.log('Categories Retrieved:', data);
@@ -58,7 +57,7 @@ export class EditBookComponent implements OnInit {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categoryName: this.categoryName
+      categories: this.categories
     };
     console.log('Book Data to Update:', book);
 
