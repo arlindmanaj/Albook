@@ -103,6 +103,7 @@ namespace Albook.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookCategoryId"));
 
                     b.Property<string>("BookId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("CategoryId")
@@ -159,8 +160,6 @@ namespace Albook.Migrations
                     b.HasKey("TransactionId");
 
                     b.HasIndex("BookId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
                 });
@@ -223,27 +222,25 @@ namespace Albook.Migrations
 
             modelBuilder.Entity("Albook.Models.Domain.BookReview", b =>
                 {
-                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                    b.HasOne("Albook.Models.Domain.Book", null)
                         .WithMany("BookReviews")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Albook.Models.Domain.User", "User")
+                    b.HasOne("Albook.Models.Domain.User", null)
                         .WithMany("BookReviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.BooksCategories", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", "Book")
                         .WithMany("BooksCategories")
-                        .HasForeignKey("BookId");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Albook.Models.Domain.Category", "Category")
                         .WithMany("BooksCategories")
@@ -258,30 +255,18 @@ namespace Albook.Migrations
 
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
                 {
-                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                    b.HasOne("Albook.Models.Domain.Book", null)
                         .WithMany("Transactions")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Albook.Models.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Translation", b =>
                 {
-                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                    b.HasOne("Albook.Models.Domain.Book", null)
                         .WithMany("Translations")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Book", b =>

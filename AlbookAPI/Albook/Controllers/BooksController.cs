@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Models.DTO;
 using Albook.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,9 +36,9 @@ namespace Albook.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddBook([FromBody] Book book)
+        public async Task<IActionResult> AddBook([FromBody] CreateBookRequestDto createBookRequest)
         {
-            //await _bookService.AddBookAsync(book);
+            await _bookService.AddBookAsync(createBookRequest);
             return Ok(new { message = "Book added successfully." });
         }
 

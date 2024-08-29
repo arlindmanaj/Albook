@@ -10,7 +10,7 @@ namespace Albook.Configurations
         {
             builder.HasKey(tr => tr.TranslationId);
 
-            builder.HasOne(tr => tr.Book)
+            builder.HasOne<Book>()
                 .WithMany(b => b.Translations)
                 .HasForeignKey(tr => tr.BookId)
                 .OnDelete(DeleteBehavior.Cascade);

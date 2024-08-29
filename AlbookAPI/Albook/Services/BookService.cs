@@ -25,9 +25,11 @@ namespace Albook.Services
 
             foreach (var book in books)
             {
+                // Retrieve the categories associated with the book
                 var bookCategories = await _bookCategoryRepository.GetCategoriesByBookIdAsync(book.BookId);
 
-                response.Add(new BookDto
+                // Map the book and its categories to a BookDto
+                var bookDto = new BookDto
                 {
                     BookId = book.BookId,
                     Title = book.Title,
@@ -43,7 +45,9 @@ namespace Albook.Services
                         CategoryId = bc.CategoryId,
                         Name = bc.Category.Name
                     }).ToList()
-                });
+                };
+
+                response.Add(bookDto);
             }
 
             return response;
@@ -76,30 +80,31 @@ namespace Albook.Services
         }
 
         //FIX
-        public async Task<BookDto> AddBookAsync(BookDto bookDto)
+        public async Task<BookDto> AddBookAsync(CreateBookRequestDto createBookDto)
         {
             var book = new Book
             {
                 BookId = Guid.NewGuid().ToString(), // Assuming BookId is a GUID or similar unique identifier
-                Title = bookDto.Title,
-                Author = bookDto.Author,
-                Description = bookDto.Description,
-                Language = bookDto.Language,
-                CoverUrl = bookDto.CoverUrl,
-                ContentUrl = bookDto.ContentUrl,
-                Price = bookDto.Price,
+                Title = createBookDto.Title,
+                Author = createBookDto.Author,
+                Description = createBookDto.Description,
+                Language = createBookDto.Language,
+                CoverUrl = createBookDto.CoverUrl,
+                ContentUrl = createBookDto.ContentUrl,
+                Price = createBookDto.Price,
                 PublishedAt = DateTime.Now // Assuming new books have a current timestamp
             };
 
-            Book addedBook = await _bookRepository.AddBookAsync(book);
+
+            var addedBook = await _bookRepository.AddBookAsync(book);
 
             // Create BookCategories entries
-            foreach (var categoryDto in bookDto.Categories)
+            foreach (var categoryId in createBookDto.CategoryIds)
             {
                 var bookCategory = new BooksCategories
                 {
-                    BookId = addedBook.BookId,
-                    CategoryId = categoryDto.CategoryId
+                    BookId = book.BookId,
+                    CategoryId = categoryId
                 };
                 await _bookCategoryRepository.AddBookCategoryAsync(bookCategory);
             }

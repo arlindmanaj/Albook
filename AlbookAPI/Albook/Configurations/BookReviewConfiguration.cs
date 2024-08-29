@@ -12,13 +12,13 @@ namespace Albook.Configurations
             builder.HasKey(br => br.ReviewId);
 
             // Configure the relationship with Book
-            builder.HasOne(br => br.Book)
+            builder.HasOne<Book>()
                 .WithMany(b => b.BookReviews)
                 .HasForeignKey(br => br.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the relationship with Category
-            builder.HasOne(br => br.User)
+            builder.HasOne<User>()
                 .WithMany(u => u.BookReviews)
                 .HasForeignKey(br => br.UserId)
                 .OnDelete(DeleteBehavior.Cascade);

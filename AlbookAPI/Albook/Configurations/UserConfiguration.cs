@@ -18,7 +18,7 @@ namespace Albook.Configurations
 
             // Configuring relationships
             builder.HasMany(u => u.BookReviews)
-                   .WithOne(br => br.User)
+                   .WithOne()
                    .HasForeignKey(br => br.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
         }

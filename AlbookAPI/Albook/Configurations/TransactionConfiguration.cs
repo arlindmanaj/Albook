@@ -11,7 +11,7 @@ namespace Albook.Configurations
             builder.HasKey(t => t.TransactionId);
 
             // Configure the relationship with Book
-            builder.HasOne(t => t.Book)
+            builder.HasOne<Book>()
                 .WithMany(b => b.Transactions)
                 .HasForeignKey(t => t.BookId)
                 .OnDelete(DeleteBehavior.Cascade);

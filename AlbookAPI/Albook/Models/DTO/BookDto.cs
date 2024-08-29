@@ -15,6 +15,5 @@ namespace Albook.Models.DTO
         public DateTime PublishedAt { get; set; }
 
         public List<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
-        public Category[] CategoriesTest { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace Albook.Repositories.Interfaces
     {
         Task<IEnumerable<Book>> GetBooksAsync();
         Task<Book> GetBookByIdAsync(string bookId);
-        Task<Book> AddBookAsync(Book book);
+        Task<Book> AddBookAsync(Book createBook);
         Task<bool> UpdateBookAsync(string bookId, Book book);
         Task<bool> DeleteBookAsync(string bookId);
     }

@@ -20,9 +20,15 @@ namespace Albook.Configurations
                    .HasForeignKey(bc => bc.BookId);
 
             // Configure the relationship with Category
-            builder.HasOne(bc => bc.Category)
+            builder.HasOne((bc => bc.Category))
                    .WithMany(c => c.BooksCategories)
                    .HasForeignKey(bc => bc.CategoryId);
+
+            builder.Property(bc => bc.BookId)
+                .IsRequired();
+
+            builder.Property(bc => bc.CategoryId)
+                   .IsRequired();
         }
 
     }

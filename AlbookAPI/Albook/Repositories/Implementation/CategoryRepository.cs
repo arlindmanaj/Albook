@@ -1,7 +1,6 @@
 ﻿using Albook.Data;
 using Albook.Models.Domain;
 using Albook.Repositories.Interfaces;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Albook.Repositories.Implementation
@@ -54,4 +53,3 @@ namespace Albook.Repositories.Implementation
     }
 
 }
-

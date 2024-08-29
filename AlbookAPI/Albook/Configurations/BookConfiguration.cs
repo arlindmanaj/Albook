@@ -24,19 +24,23 @@ namespace Albook.Configurations
 
             // Configuring relationships
             builder.HasMany(b => b.BookReviews)
-                   .WithOne(br => br.Book)
+                   .WithOne()
                    .HasForeignKey(br => br.BookId)
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(b => b.Transactions)
-                   .WithOne(t => t.Book)
+                   .WithOne()
                    .HasForeignKey(t => t.BookId)
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(b => b.Translations)
-                   .WithOne(tr => tr.Book)
+                   .WithOne()
                    .HasForeignKey(tr => tr.BookId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(b => b.BooksCategories)
+                   .WithOne(bc => bc.Book)
+                   .HasForeignKey(bc => bc.BookId);
         }
     }
 }

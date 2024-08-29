@@ -18,7 +18,7 @@ namespace Albook.Repositories.Implementation
         public async Task<IEnumerable<BooksCategories>> GetCategoriesByBookIdAsync(string bookId)
         {
             return await _context.BooksCategories
-                .Include(bc => bc.Category) // Include category details
+                .Include(bc => bc.Category)  // Include the Category details
                 .Where(bc => bc.BookId == bookId)
                 .ToListAsync();
         }
