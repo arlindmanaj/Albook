@@ -92,9 +92,14 @@ namespace Albook.Services
                 CoverUrl = createBookDto.CoverUrl,
                 ContentUrl = createBookDto.ContentUrl,
                 Price = createBookDto.Price,
-                PublishedAt = DateTime.Now // Assuming new books have a current timestamp
+                PublishedAt = DateTime.Now, // Assuming new books have a current timestamp
+                Translations = createBookDto.Translations
             };
 
+            foreach (var item in book.Translations)
+            {
+                item.BookId = book.BookId;
+            }
 
             var addedBook = await _bookRepository.AddBookAsync(book);
 

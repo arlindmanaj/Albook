@@ -37,7 +37,7 @@ namespace Albook.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddBook([FromBody] CreateBookRequestDto createBookRequest)
-        {
+         {
             await _bookService.AddBookAsync(createBookRequest);
             return Ok(new { message = "Book added successfully." });
         }

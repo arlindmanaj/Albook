@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Book } from '../book-models/book.model';
 import { AddBookRequest } from '../book-models/add-book-request.model';
@@ -18,7 +18,7 @@ export class BookService {
     const headers = {
       'Authorization': `Bearer ${token}`
     };
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/Books`, model, { headers });
+    return this.http.post<void>(`${environment.apiBaseUrl}/api/Books`, model, { headers })
   }
 
   getAllBooks(): Observable<Book[]> {

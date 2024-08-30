@@ -1,4 +1,5 @@
 import { Category } from "../categories/category.service";
+import { Translation } from './../Translations/translations/translations.model';
 
 export interface AddBookRequest {
     title: string;
@@ -8,6 +9,7 @@ export interface AddBookRequest {
     coverUrl: string;
     contentUrl: string;
     price: number;
-    categories: Category[]
+    categories: Category[];
+    translations: Translation[];
   }
   

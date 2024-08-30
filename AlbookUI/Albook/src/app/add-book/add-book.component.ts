@@ -4,6 +4,7 @@ import { BookService } from '../book-services/book.service';
 import { AddBookRequest } from '../book-models/add-book-request.model';
 import { CategoryService } from '../categories/category.service';
 import { Category } from './../categories/category.service';
+import { Translation } from '../Translations/translations/translations.model';
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
@@ -19,6 +20,7 @@ export class AddBookComponent {
   price: number = 0;
 
   categories: Category[] = [];
+  translations: Translation[] = [];
 
   constructor(private bookService: BookService, private router: Router, private categoryService: CategoryService) { }
   ngOnInit(): void {
@@ -36,9 +38,10 @@ export class AddBookComponent {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categories: this.categories
+      categories: this.categories,
+      translations: this.translations
     };
-   
+    console.log(book);
   
     this.bookService.addBook(book)
       .subscribe(() => {

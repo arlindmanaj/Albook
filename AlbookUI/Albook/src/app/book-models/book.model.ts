@@ -1,4 +1,5 @@
 import { Category } from "../categories/category.service";
+import { Translation } from "../Translations/translations/translations.model";
 
 export interface Book {
   bookId: string;
@@ -11,6 +12,7 @@ export interface Book {
   price: number;
   publishedAt: Date;
   createdAt: Date;
+  translations: Translation[];
 
   categories: Category[];
 }

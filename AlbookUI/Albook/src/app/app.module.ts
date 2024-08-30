@@ -22,6 +22,7 @@ import { ManageCategoriesComponent } from './categories/manage-categories/manage
 import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +40,8 @@ import { EditCategoryComponent } from './categories/edit-category/edit-category/
     NavbarComponent,
     ManageCategoriesComponent,
     AddCategoryComponent,
-    EditCategoryComponent,
-    
+    EditCategoryComponent
+
   ],
   imports: [
     BrowserModule,
