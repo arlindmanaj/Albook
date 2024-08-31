@@ -1,4 +1,5 @@
-import { Category } from "../categories/category.service";
+
+import { Category } from './../categories/category-models/category.model';
 
 export interface UpdateBookRequest {
     title: string;

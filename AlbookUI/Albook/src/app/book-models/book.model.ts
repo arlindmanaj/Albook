@@ -1,4 +1,4 @@
-import { Category } from "../categories/category.service";
+import { Category } from "../categories/category-models/category.model";
 import { Translation } from "../Translations/translations/translations.model";
 
 export interface Book {

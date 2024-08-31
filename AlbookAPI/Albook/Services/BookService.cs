@@ -94,6 +94,7 @@ namespace Albook.Services
                 Price = createBookDto.Price,
                 PublishedAt = DateTime.Now, // Assuming new books have a current timestamp
                 Translations = createBookDto.Translations
+
             };
 
             foreach (var item in book.Translations)

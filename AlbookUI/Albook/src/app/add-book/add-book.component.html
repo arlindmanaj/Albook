@@ -30,13 +30,13 @@
       <input type="number" id="price" [(ngModel)]="price" name="price" required>
     </div>
     <div>
-      <label for="category">Category</label>
-      <select id="category" [(ngModel)]="categories" name="categoryId" required>
-        <option *ngFor="let category of categories" [value]="category.categoryId">
-          {{ category.name }}
-        </option>
-      </select>
+      <label>Categories</label>
+      <div *ngFor="let category of existingCategories">
+        <input type="checkbox" [value]="category" (change)="onCategoryChange($event, category)" />
+        {{ category.name }}
+      </div>
     </div>
+
     <button type="submit">Add Book</button>
   </form>
 </div>

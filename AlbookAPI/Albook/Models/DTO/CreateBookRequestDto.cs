@@ -15,8 +15,8 @@ namespace Albook.Models.DTO
         public decimal Price { get; set; }
         public DateTime PublishedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public List<int> CategoryIds { get; set; }
-        //public List<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
+        public List<int> CategoryIds { get; set; } = new List<int>();  
+       // public List<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
 
 
         public ICollection<Translation> Translations { get; set; }

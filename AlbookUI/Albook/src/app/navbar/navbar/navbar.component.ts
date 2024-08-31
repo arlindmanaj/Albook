@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router,@Inject(DOCUMENT) private document: Document) { 
+    const localStorage = document.defaultView?.localStorage;
+  }
   logout(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');

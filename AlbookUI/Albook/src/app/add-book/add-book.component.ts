@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { AddBookRequest } from '../book-models/add-book-request.model';
 import { CategoryService } from '../categories/category.service';
-import { Category } from './../categories/category.service';
+import { Category } from '../categories/category-models/category.model';
 import { Translation } from '../Translations/translations/translations.model';
 @Component({
   selector: 'app-add-book',
@@ -19,17 +19,28 @@ export class AddBookComponent {
   contentUrl: string = '';
   price: number = 0;
 
-  categories: Category[] = [];
+  selectedCategories: Category[] = [];
+
+  existingCategories: Category[] = [];
   translations: Translation[] = [];
 
   constructor(private bookService: BookService, private router: Router, private categoryService: CategoryService) { }
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(data => {
-      this.categories = data;
+      this.existingCategories = data;
     });
   }
+
+  onCategoryChange(event: Event, category: Category): void {
+    const checkbox = event.target as HTMLInputElement;
+    if (checkbox.checked) {
+      this.selectedCategories.push(category);
+    } else {
+      this.selectedCategories = this.selectedCategories.filter(c => c.categoryId !== category.categoryId);
+    }
+  }
+
   addBook(): void {
-    
     const book: AddBookRequest = {
       title: this.title,
       author: this.author,
@@ -38,11 +49,11 @@ export class AddBookComponent {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categories: this.categories,
+      categoryIds: this.selectedCategories.map(c => c.categoryId),
       translations: this.translations
     };
     console.log(book);
-  
+
     this.bookService.addBook(book)
       .subscribe(() => {
         this.router.navigate(['/books']);

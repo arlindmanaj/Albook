@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book-services/book.service';
 import { UpdateBookRequest } from '../book-models/update-book-request.model';
 import { Book } from '../book-models/book.model';
-import { CategoryService, Category } from '../categories/category.service';
+import { CategoryService } from '../categories/category.service';
+import { Category } from '../categories/category-models/category.model';
 
 @Component({
   selector: 'app-edit-book',
@@ -20,7 +21,7 @@ export class EditBookComponent implements OnInit {
   contentUrl: string = '';
   price: number = 0;
   categories: Category[] = [];
-
+  selectedCategories: Category[] = [];
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
     this.bookId = this.route.snapshot.paramMap.get('id')!;
   }
@@ -47,7 +48,13 @@ export class EditBookComponent implements OnInit {
     });
 
   }
-
+  onCategoryChange(event: any, category: Category): void {
+    if (event.target.checked) {
+      this.selectedCategories.push(category);
+    } else {
+      this.selectedCategories = this.selectedCategories.filter(c => c.categoryId !== category.categoryId);
+    }
+  }
   editBook(): void {
     const book: UpdateBookRequest = {
       title: this.title,
