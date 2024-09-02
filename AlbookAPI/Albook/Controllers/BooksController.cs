@@ -44,11 +44,11 @@ namespace Albook.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateBook(string id, [FromBody] Book book)
+        public async Task<IActionResult> UpdateBook(string id, [FromBody] BookDto bookDto)
         {
-            //var updated = await _bookService.UpdateBookAsync(id, book);
-            //if (!updated)
-            //    return NotFound();
+            var updated = await _bookService.UpdateBookAsync(id, bookDto);
+            if (!updated)
+               return NotFound();
 
             return Ok(new { message = "Book updated successfully." });
         }

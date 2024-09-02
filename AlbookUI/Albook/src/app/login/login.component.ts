@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth-services/auth.service';
-import { LoginRequest } from '../login-models/login-request.model';
-import { LoginResponse } from '../login-models/login-response.model';
+import { AuthService } from '../../Services/auth-services/auth.service';
+import { LoginRequest } from '../../Models/login-models/login-request.model';
+import { LoginResponse } from '../../Models/login-models/login-response.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({

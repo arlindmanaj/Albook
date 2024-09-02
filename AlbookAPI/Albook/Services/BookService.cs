@@ -136,9 +136,9 @@ namespace Albook.Services
             book.CoverUrl = bookDto.CoverUrl;
             book.ContentUrl = bookDto.ContentUrl;
             book.Price = bookDto.Price;
+            
 
-            // Remove existing category associations -> LIND, ose i len qysh i pat e ja shton t rejat, ose mas miri i fshin krejt
-            //Pse i fshin krejt? se ne UI i ki aty diku me check items kategoriat, kshtu qe ja fshin e ja rishkrun nuk i hupin
+          
             await _bookCategoryRepository.RemoveCategoriesByBookIdAsync(book.BookId);
 
             // Add new category associations

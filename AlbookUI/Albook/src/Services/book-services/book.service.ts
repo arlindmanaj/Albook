@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { Book } from '../book-models/book.model';
-import { AddBookRequest } from '../book-models/add-book-request.model';
-import { UpdateBookRequest } from '../book-models/update-book-request.model';
-
+import { Book } from '../../Models/book-models/book.model';
+import { AddBookRequest } from '../../Models/book-models/add-book-request.model';
+import { UpdateBookRequest } from '../../Models/book-models/update-book-request.model';
 @Injectable({
   providedIn: 'root'
 })

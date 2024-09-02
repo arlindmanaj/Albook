@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
-import { User } from '../models/user.model';
-import { RegisterRequest } from '../models/reqister-request.model';
-import { ChangeRoleRequest } from '../models/change-role-request.model';
+import { environment } from '../../environments/environment.development';
+import { User } from '../../app/Users/models/user.model';
+import { RegisterRequest } from '../../app/Users/models/reqister-request.model';
+import { ChangeRoleRequest } from '../../app/Users/models/change-role-request.model';
 
 @Injectable({
   providedIn: 'root'

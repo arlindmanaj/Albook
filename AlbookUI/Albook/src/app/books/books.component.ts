@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../Services/book-services/book.service';
-import { Book } from '../book-models/book.model';
+import { Book } from '../../Models/book-models/book.model';
 import { AuthService } from '../../Services/auth-services/auth.service';
-import { Category } from '../categories/category-models/category.model';
+import { Category } from '../../Models/category-models/category.model';
+import { JwtService } from './../../Services/auth-services/jwt.service';
 
 @Component({
   selector: 'app-books',
@@ -14,7 +15,7 @@ export class BooksComponent implements OnInit {
   books: Book[] = [];
   categories: Category[] = [];
 
-  constructor(private bookService: BookService, private router: Router, private authService: AuthService) { }
+  constructor(private bookService: BookService, private router: Router, private authService: AuthService, private jwtService: JwtService) { }
 
   ngOnInit(): void {
     this.bookService.getAllBooks()
@@ -41,18 +42,16 @@ export class BooksComponent implements OnInit {
   }
 
   public isAdmin(): boolean {
-    const role = localStorage.getItem('userRole');
+    const role =  this.jwtService.getRole();
+    if(role === 'Admin'){
+      console.log('Retrieved role from localStorage:', role);
+      return true;
+      
+    }
     console.log('Retrieved role from localStorage:', role);
-    return role === 'Admin';
+    return false;
   }
   private decodeToken(token: string): any {
-    try {
-      const payload = atob(token.split('.')[1]);
-      return JSON.parse(payload);
-    }
-    catch (e) {
-      console.error('Failed to decode token', e);
-      return null;
-    }
+   return this.jwtService.decodeToken();
   }
 }

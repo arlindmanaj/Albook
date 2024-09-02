@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../Services/book-services/book.service';
-import { UpdateBookRequest } from '../book-models/update-book-request.model';
-import { Book } from '../book-models/book.model';
+import { UpdateBookRequest } from '../../Models/book-models/update-book-request.model';
+import { Book } from '../../Models/book-models/book.model';
 import { CategoryService } from '../../Services/category-service/category.service';
-import { Category } from '../categories/category-models/category.model';
+import { Category } from '../../Models/category-models/category.model';
 
 @Component({
   selector: 'app-edit-book',
@@ -20,8 +20,10 @@ export class EditBookComponent implements OnInit {
   coverUrl: string = '';
   contentUrl: string = '';
   price: number = 0;
-  categories: Category[] = [];
-  selectedCategories: Category[] = [];
+
+  existingCategories: Category[] = [];
+  selectedCategories: number[] = [];
+
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
     this.bookId = this.route.snapshot.paramMap.get('id')!;
   }
@@ -39,20 +41,20 @@ export class EditBookComponent implements OnInit {
         this.coverUrl = book.coverUrl;
         this.contentUrl = book.contentUrl;
         this.price = book.price;
-        this.categories = book.categories;
-        console.log('Book Category Name:', this.categories);
+        this.selectedCategories = book.categories.map(c => c.categoryId);
+        console.log('Book Category Name:', this.existingCategories);
       });
     this.categoryService.getCategories().subscribe(data => {
       console.log('Categories Retrieved:', data);
-      this.categories = data;
+      this.existingCategories = data;
     });
 
   }
-  onCategoryChange(event: any, category: Category): void {
+  onCategoryChange(event: any, categoryId: number): void {
     if (event.target.checked) {
-      this.selectedCategories.push(category);
+      this.selectedCategories.push(categoryId);
     } else {
-      this.selectedCategories = this.selectedCategories.filter(c => c.categoryId !== category.categoryId);
+      this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
     }
   }
   editBook(): void {
@@ -64,7 +66,7 @@ export class EditBookComponent implements OnInit {
       coverUrl: this.coverUrl,
       contentUrl: this.contentUrl,
       price: this.price,
-      categories: this.categories
+      categories: this.selectedCategories.map(id => ({ categoryId: id, name: '' }))
     };
     console.log('Book Data to Update:', book);
 

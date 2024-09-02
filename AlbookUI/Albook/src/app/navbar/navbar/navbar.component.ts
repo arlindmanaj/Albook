@@ -1,50 +1,43 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
-
+import { AuthService } from '../../../Services/auth-services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private router: Router,@Inject(DOCUMENT) private document: Document) { 
-    const localStorage = document.defaultView?.localStorage
+  private localStorage: Storage | null = null;
+
+  constructor(private router: Router, @Inject(DOCUMENT) private document: Document, private authService: AuthService) {
+    if (this.document.defaultView) {
+      this.localStorage = this.document.defaultView.localStorage;
+    }
   }
   logout(): void {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userRole');
+    this.authService.logout();
     this.router.navigate(['/login']);
-
-  }
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('userRole');
-    
   }
 
   isAdmin(): boolean {
-    const role = localStorage.getItem('userRole');
-    console.log('Retrieved role from localStorage:', role);
-    return role === 'Admin';
+    return this.authService.isAdmin();
   }
 
   isUser(): boolean {
-    const role = localStorage.getItem('userRole');
-    console.log('Retrieved role from localStorage:', role);
-    return role === 'User';
+    return this.authService.getUserRole() === 'User';
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+
   }
 
   isLoggedInAndAdmin(): boolean {
-    const token = localStorage.getItem('authToken');
-    const role = localStorage.getItem('userRole');
-    console.log('Retrieved role from localStorage:', role);
-    return !!token && role === 'Admin';
+    return this.authService.isAuthenticated() && this.authService.isAdmin();
   }
 
   isLoggedInAndUser(): boolean {
-    const token = localStorage.getItem('authToken');
-    const role = localStorage.getItem('userRole');
-    console.log('Retrieved role from localStorage:', role);
-    return !!token && role === 'User';
+    return this.authService.isAuthenticated() && this.authService.getUserRole() === 'User';
   }
 }

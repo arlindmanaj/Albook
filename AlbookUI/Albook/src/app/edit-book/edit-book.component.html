@@ -31,11 +31,12 @@
       </div>
       <div>
         <label>Categories</label>
-        <div *ngFor="let category of categories">
+        <div *ngFor="let category of existingCategories">
           <input
             type="checkbox"
             [value]="category.categoryId"
-            (change)="onCategoryChange($event, category)"
+            [checked]="selectedCategories.includes(category.categoryId)"
+            (change)="onCategoryChange($event, category.categoryId)"
           />
           {{ category.name }}
         </div>

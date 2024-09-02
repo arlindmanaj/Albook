@@ -9,6 +9,6 @@ namespace Albook.Repositories.Interfaces
         Task<BookDto> GetBookByIdAsync(string id);
         Task<BookDto> AddBookAsync(CreateBookRequestDto createBookDto);
         Task<bool> DeleteBookAsync(string id);
-        Task<bool> UpdateBookAsync(string id, BookDto book);
+        Task<bool> UpdateBookAsync(string id, BookDto bookDto);
     }
 }
