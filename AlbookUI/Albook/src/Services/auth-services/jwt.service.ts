@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DOCUMENT } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class JwtService {
 
   private localStorage: Storage | null = null;
 
-  constructor() { 
+  constructor(@Inject(DOCUMENT) private document: Document) { 
     if (typeof window !== 'undefined') {
       this.localStorage = window.localStorage;
     }
@@ -21,14 +22,14 @@ export class JwtService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return this.document?.defaultView?.localStorage?.getItem('authToken') || null;
   }
   saveToken(token: string): void {
-    localStorage.setItem('token', token);
+    this.document?.defaultView?.localStorage?.setItem('token', token);
     this.decodeToken(); // Decode the token whenever we save it
   }
   clearToken(): void {
-    this.localStorage?.removeItem('authToken');
+    this.document?.defaultView?.localStorage?.removeItem('authToken');
   }
   isAuthenticated(): boolean {
     const token = this.getToken();
@@ -38,15 +39,13 @@ export class JwtService {
   }
  
   getRole(): string | null {
-      const role = localStorage.getItem('userRole');
+      const role = this.document?.defaultView?.localStorage?.getItem('userRole');
       if (role) {
         
         return role;
       }
       return null;
-    //   const role = localStorage.getItem('userRole');
-    // console.log('Retrieved role from localStorage:', role);
-    // return role === 'Admin';
+ 
    }
 
    isAdmin(): boolean {

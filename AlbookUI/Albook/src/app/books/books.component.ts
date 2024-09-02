@@ -12,6 +12,7 @@ import { JwtService } from './../../Services/auth-services/jwt.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  isAdminRole: boolean = false;
   books: Book[] = [];
   categories: Category[] = [];
 
@@ -22,6 +23,7 @@ export class BooksComponent implements OnInit {
       .subscribe(data => {
         this.books = data;
       });
+      this.checkAdminRole();
   }
   addBook(): void {
     this.router.navigate(['admin/add-book']);
@@ -40,16 +42,13 @@ export class BooksComponent implements OnInit {
       });
     }
   }
-
+  private checkAdminRole(): void{
+    this.isAdminRole = this.jwtService.isAdmin();
+    console.log('Retrieved role from localStorage:', this.isAdminRole ? 'Admin' : 'User');
+  }
   public isAdmin(): boolean {
-    const role =  this.jwtService.getRole();
-    if(role === 'Admin'){
-      console.log('Retrieved role from localStorage:', role);
-      return true;
-      
-    }
-    console.log('Retrieved role from localStorage:', role);
-    return false;
+   
+    return this.isAdminRole;
   }
   private decodeToken(token: string): any {
    return this.jwtService.decodeToken();
