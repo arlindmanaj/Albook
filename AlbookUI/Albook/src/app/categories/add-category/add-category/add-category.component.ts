@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../../category.service';
+import { CategoryService } from '../../../../Services/category-service/category.service';
 import { Router } from '@angular/router';
 import { Category } from '../../category-models/category.model';
 
@@ -11,7 +11,7 @@ import { Category } from '../../category-models/category.model';
 export class AddCategoryComponent {
   name = '';
 
-  constructor(private categoryService: CategoryService, private router: Router) {}
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   addCategory(): void {
     const newCategory: Category = { categoryId: 0, name: this.name };

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../book-services/book.service';
+import { BookService } from '../../Services/book-services/book.service';
 import { UpdateBookRequest } from '../book-models/update-book-request.model';
 import { Book } from '../book-models/book.model';
-import { CategoryService } from '../categories/category.service';
+import { CategoryService } from '../../Services/category-service/category.service';
 import { Category } from '../categories/category-models/category.model';
 
 @Component({
@@ -72,7 +72,7 @@ export class EditBookComponent implements OnInit {
       .subscribe(() => {
         console.log('Book successfully updated, navigating to /books');
         this.router.navigate(['/books']);
-      }, error =>{
+      }, error => {
         console.error('Error updating book:', error);
       });
   }

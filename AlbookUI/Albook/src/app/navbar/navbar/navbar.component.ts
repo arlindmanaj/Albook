@@ -9,7 +9,7 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 })
 export class NavbarComponent {
   constructor(private router: Router,@Inject(DOCUMENT) private document: Document) { 
-    const localStorage = document.defaultView?.localStorage;
+    const localStorage = document.defaultView?.localStorage
   }
   logout(): void {
     localStorage.removeItem('authToken');

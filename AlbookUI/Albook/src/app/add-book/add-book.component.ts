@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookService } from '../book-services/book.service';
+import { BookService } from '../../Services/book-services/book.service';
 import { AddBookRequest } from '../book-models/add-book-request.model';
-import { CategoryService } from '../categories/category.service';
+import { CategoryService } from '../../Services/category-service/category.service';
 import { Category } from '../categories/category-models/category.model';
 import { Translation } from '../Translations/translations/translations.model';
 @Component({

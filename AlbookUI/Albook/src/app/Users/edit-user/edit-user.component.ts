@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../Services/user.service';
+import { UserService } from '../../../Services/user-services/user.service';
 import { RegisterRequest } from '../models/reqister-request.model';
 import { User } from '../models/user.model';
 import { ChangeRoleRequest } from '../models/change-role-request.model';

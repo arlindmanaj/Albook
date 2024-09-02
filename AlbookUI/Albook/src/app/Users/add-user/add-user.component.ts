@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../Services/user.service';
+import { UserService } from '../../../Services/user-services/user.service';
 import { RegisterRequest } from '../models/reqister-request.model';
 
 @Component({

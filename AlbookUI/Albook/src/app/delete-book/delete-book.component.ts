@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../book-services/book.service';
+import { BookService } from '../../Services/book-services/book.service';
 
 @Component({
   selector: 'app-delete-book',
