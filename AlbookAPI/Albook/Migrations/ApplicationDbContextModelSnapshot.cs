@@ -134,6 +134,36 @@ namespace Albook.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Albook.Models.Domain.Chapters", b =>
+                {
+                    b.Property<int>("ChapterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChapterId"));
+
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("ChapterId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("Chapters");
+                });
+
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
                 {
                     b.Property<int>("TransactionId")
@@ -253,6 +283,16 @@ namespace Albook.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Albook.Models.Domain.Chapters", b =>
+                {
+                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                        .WithMany("Chapters")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Book");
+                });
+
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", null)
@@ -274,6 +314,8 @@ namespace Albook.Migrations
                     b.Navigation("BookReviews");
 
                     b.Navigation("BooksCategories");
+
+                    b.Navigation("Chapters");
 
                     b.Navigation("Transactions");
 

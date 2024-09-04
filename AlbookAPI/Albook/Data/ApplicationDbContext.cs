@@ -15,6 +15,7 @@ namespace Albook.Data
         public DbSet<BookReview> BookReviews { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<BooksCategories> BooksCategories { get; set; }
+        public DbSet<Chapters> Chapters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +25,7 @@ namespace Albook.Data
             modelBuilder.ApplyConfiguration(new BookReviewConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new TranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new ChaptersConfiguration());
 
             // Configuring primary keys
 
