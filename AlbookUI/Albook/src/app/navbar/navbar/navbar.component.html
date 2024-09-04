@@ -1,11 +1,12 @@
 <div class="header">
-    <h1><a [routerLink]="['home']" style="text-decoration: none; color: inherit;">Albook</a></h1>
-  </div>
-  <div *ngIf="isLoggedIn()">
-    <button (click)="logout()">Logout</button>
-  </div>
-  
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
-  
+  <h1 ><a [routerLink]="['home']" style="text-decoration: none; color: inherit;">Albook</a>
+  </h1>
+</div>
+<div *ngIf="isLoggedIn()">
+  <button (click)="logout()">Logout</button>
+  <button (click)="goToAdminDashboard()">Admin Dashboard</button>
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
