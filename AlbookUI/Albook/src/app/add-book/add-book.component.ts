@@ -19,6 +19,7 @@ export class AddBookComponent {
   contentUrl: string = '';
   price: number = 0;
 
+
   selectedCategories: Category[] = [];
 
   existingCategories: Category[] = [];
@@ -30,6 +31,7 @@ export class AddBookComponent {
       this.existingCategories = data;
     });
   }
+  
 
   onCategoryChange(event: Event, category: Category): void {
     const checkbox = event.target as HTMLInputElement;
