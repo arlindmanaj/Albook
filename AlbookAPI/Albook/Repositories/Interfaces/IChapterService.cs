@@ -9,6 +9,7 @@ namespace Albook.Repositories.Interfaces
         Task AddChapterAsync(CreateChapterDto createChapterDto);
         Task UpdateChapterAsync(int chapterId, UpdateChapterDto updateChapterDto);
         Task DeleteChapterAsync(int chapterId);
+        Task<BookDto> AddBookWithPdfAsync(CreateBookRequestDto createBookRequestDto, IFormFile pdfFile);
     }
 
 }

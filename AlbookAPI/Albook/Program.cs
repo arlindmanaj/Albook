@@ -32,7 +32,7 @@ namespace Albook
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
-
+            builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 
             // Register services
             builder.Services.AddScoped<IAuthService, AuthService>();
@@ -42,6 +42,8 @@ namespace Albook
             builder.Services.AddScoped<IBookReviewService, BookReviewService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IChapterService, ChapterService>();
+            builder.Services.AddScoped<IFileService, FileService>();
 
             // Add authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

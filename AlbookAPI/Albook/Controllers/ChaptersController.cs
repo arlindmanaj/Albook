@@ -49,6 +49,12 @@ namespace Albook.Controllers
             await _chapterService.DeleteChapterAsync(chapterId);
             return Ok();
         }
+        [HttpPost("add-chapters-from-pdf/{bookId}")]
+        public async Task<IActionResult> AddChaptersFromPdf(CreateBookRequestDto createBookRequestDto, IFormFile file)
+        {
+            await _chapterService.AddBookWithPdfAsync(createBookRequestDto, file);
+            return Ok();
+        }
     }
 
 }
