@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 namespace Albook.Services.Interfaces
 {
     public interface IFileHandlerService
@@ -6,7 +7,7 @@ namespace Albook.Services.Interfaces
 
         Task<string> UploadFileAsync(IFormFile file);
         Task<byte[]> DownloadFileAsync(string fileName);
-        Task<bool> DeleteFileAsync(string fileName);
+        bool DeleteFile(string fileName);
         bool CheckFileExists(string fileName);
         List<string> ListUploadedFiles();
     }

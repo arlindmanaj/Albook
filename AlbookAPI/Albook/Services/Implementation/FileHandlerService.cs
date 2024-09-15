@@ -1,6 +1,8 @@
 ﻿using Albook.Services.Interfaces;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
 namespace Albook.Services.Implementation
@@ -65,6 +67,43 @@ namespace Albook.Services.Implementation
             return File.ReadAllBytesAsync(filePath);
         }
 
+        public bool DeleteFile(string fileName)
+        {
+            var filePath = Path.Combine(_uploadsFolderPath, fileName);
 
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath); // Synchronous file delete
+                    return true;
+                }
+                catch (Exception)
+                {
+                    // Handle/log the exception if necessary
+                    return false;
+                }
+            }
+
+            return false; // File does not exist
+
+
+        }
+
+        public bool CheckFileExists(string fileName)
+        {
+            var filePath = Path.Combine(_uploadsFolderPath, fileName);
+            return File.Exists(filePath);
+        }
+
+        public List<string> ListUploadedFiles()
+        {
+            return Directory.GetFiles(_uploadsFolderPath)
+                    .Select(file => Path.GetFileName(file))
+                    .ToList();
+        }
+
+        
+        
     }
 }
