@@ -10,5 +10,6 @@ namespace Albook.Services.Interfaces
         bool DeleteFile(string fileName);
         bool CheckFileExists(string fileName);
         List<string> ListUploadedFiles();
+        string ExtractTextFromFile(IFormFile file);
     }
 }

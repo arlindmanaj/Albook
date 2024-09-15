@@ -1,13 +1,13 @@
 ﻿using Albook.Models.Domain;
 
-namespace Albook.Services.Interfaces
+namespace Albook.Repositories.Interfaces
 {
-    public interface IChapterService
+    public interface IChapterRepository
     {
         Task<List<Chapter>> GetChaptersByBookIdAsync(string bookId);
         Task<Chapter> GetChapterByIdAsync(int chapterId);
-        Task AddChaptersFromFileAsync(string bookId, IFormFile file);
-        Task UpdateChapterAsync(int chapterId, Chapter updatedChapter);
+        Task AddChapterAsync(Chapter chapter);
+        Task UpdateChapterAsync(Chapter chapter);
         Task DeleteChapterAsync(int chapterId);
     }
 }

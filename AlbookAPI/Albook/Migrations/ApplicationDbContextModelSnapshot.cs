@@ -134,7 +134,7 @@ namespace Albook.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Albook.Models.Domain.Chapters", b =>
+            modelBuilder.Entity("Albook.Models.Domain.Chapter", b =>
                 {
                     b.Property<int>("ChapterId")
                         .ValueGeneratedOnAdd()
@@ -145,23 +145,20 @@ namespace Albook.Migrations
                     b.Property<string>("BookId")
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
+                    b.Property<int>("ChapterNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ChapterId");
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Chapters");
+                    b.ToTable("Chapter");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
@@ -283,12 +280,11 @@ namespace Albook.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Albook.Models.Domain.Chapters", b =>
+            modelBuilder.Entity("Albook.Models.Domain.Chapter", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", "Book")
-                        .WithMany("Chapters")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Chapter")
+                        .HasForeignKey("BookId");
 
                     b.Navigation("Book");
                 });
@@ -315,7 +311,7 @@ namespace Albook.Migrations
 
                     b.Navigation("BooksCategories");
 
-                    b.Navigation("Chapters");
+                    b.Navigation("Chapter");
 
                     b.Navigation("Transactions");
 

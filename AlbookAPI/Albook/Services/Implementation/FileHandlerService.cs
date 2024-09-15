@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
+using UglyToad.PdfPig;
+
 namespace Albook.Services.Implementation
 {
     public class FileHandlerService : IFileHandlerService
@@ -103,7 +105,28 @@ namespace Albook.Services.Implementation
                     .ToList();
         }
 
+        public string ExtractTextFromFile(IFormFile file)
+        {
+            StringBuilder textBuilder = new StringBuilder();
+
+            // Open the PDF using the stream from IFormFile
+            using (var stream = file.OpenReadStream())
+            using (UglyToad.PdfPig.PdfDocument pdf = UglyToad.PdfPig.PdfDocument.Open(stream))
+            {
+                // Loop through each page in the PDF
+                foreach (var page in pdf.GetPages())
+                {
+                    // Extract text from the page
+                    textBuilder.Append(page.Text);
+                }
+            }
+
+            return textBuilder.ToString();
+           
+        }
         
-        
+
+       
+
     }
 }
