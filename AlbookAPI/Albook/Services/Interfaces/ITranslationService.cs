@@ -1,6 +1,6 @@
 ﻿using Albook.Models.Domain;
 
-namespace Albook.Repositories.Interfaces
+namespace Albook.Services.Interfaces
 {
     public interface ITranslationService
     {

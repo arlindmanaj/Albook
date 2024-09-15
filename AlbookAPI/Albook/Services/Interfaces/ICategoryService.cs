@@ -1,6 +1,6 @@
 ﻿using Albook.Models.DTO;
 
-namespace Albook.Repositories.Interfaces
+namespace Albook.Services.Interfaces
 {
     public interface ICategoryService
     {

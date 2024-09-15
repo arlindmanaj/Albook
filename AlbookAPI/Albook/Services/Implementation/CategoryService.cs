@@ -1,8 +1,9 @@
 ﻿using Albook.Models.Domain;
 using Albook.Models.DTO;
 using Albook.Repositories.Interfaces;
+using Albook.Services.Interfaces;
 
-namespace Albook.Services
+namespace Albook.Services.Implementation
 {
     public class CategoryService : ICategoryService
     {

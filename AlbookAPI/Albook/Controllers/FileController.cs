@@ -1,4 +1,4 @@
-﻿using Albook.Repositories.Interfaces;
+﻿using Albook.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,35 +15,32 @@ namespace Albook.Controllers
             _fileHandlerService = fileHandlerService;
         }
 
-        [HttpPost("upload/{userId}")]
-        public async Task<IActionResult> UploadFile([FromForm] IFormFile file, string userId)
+        // Endpoint for file upload
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadFile(IFormFile file)
         {
-            try
+            var result = await _fileHandlerService.UploadFileAsync(file);
+
+            if (result == "Invalid file." || result == "Invalid file format. Only PDF and DocX files are allowed.")
             {
-                var filePath = await _fileHandlerService.UploadFileAsync(file, userId);
-                return Ok(new { FilePath = filePath });
+                return BadRequest(result);
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            return Ok(new { FileName = result });
         }
 
-        [HttpGet("download")]
-        public async Task<IActionResult> DownloadFile([FromQuery] string filePath)
+        // Endpoint for file download
+        [HttpGet("download/{fileName}")]
+        public async Task<IActionResult> DownloadFile(string fileName)
         {
             try
             {
-                var fileStream = await _fileHandlerService.DownloadFileAsync(filePath);
-                return File(fileStream, "application/pdf", Path.GetFileName(filePath));
+                var fileBytes = await _fileHandlerService.DownloadFileAsync(fileName);
+                return File(fileBytes, "application/octet-stream", fileName);
             }
             catch (FileNotFoundException)
             {
-                return NotFound("File not found");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
+                return NotFound("File not found.");
             }
         }
     }

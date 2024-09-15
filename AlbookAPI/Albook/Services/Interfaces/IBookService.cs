@@ -1,7 +1,7 @@
 ﻿using Albook.Models.Domain;
 using Albook.Models.DTO;
 
-namespace Albook.Repositories.Interfaces
+namespace Albook.Services.Interfaces
 {
     public interface IBookService
     {

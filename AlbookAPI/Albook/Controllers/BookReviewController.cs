@@ -1,5 +1,5 @@
 ﻿using Albook.Models.DTO;
-using Albook.Repositories.Interfaces;
+using Albook.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
