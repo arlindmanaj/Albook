@@ -43,7 +43,7 @@ namespace Albook
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IChapterService, ChapterService>();
-            builder.Services.AddScoped<IFileService, FileService>();
+            builder.Services.AddScoped<IFileHandlerService, FileHandlerService>();
 
             // Add authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

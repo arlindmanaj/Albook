@@ -10,7 +10,7 @@ namespace Albook.Services
 
         private readonly IBookRepository _bookRepository;
         private readonly IBookCategoryRepository _bookCategoryRepository;
-        private readonly IFileService _fileService;
+        
         public BookService(ICategoryRepository categoryRepository, IBookRepository bookRepository, IBookCategoryRepository bookCategoryRepository)
         {
             _categoryRepository = categoryRepository;
@@ -18,37 +18,7 @@ namespace Albook.Services
             _bookCategoryRepository = bookCategoryRepository;
         }
 
-        public async Task<BookDto> AddBookWithPdfAsync(CreateBookRequestDto createBookDto, IFormFile pdfFile)
-        {
-            var contentUrl = await _fileService.SaveFileAsync(pdfFile);  // Save the PDF
-
-            var book = new Book
-            {
-                BookId = Guid.NewGuid().ToString(),
-                Title = createBookDto.Title,
-                Author = createBookDto.Author,
-                Description = createBookDto.Description,
-                Language = createBookDto.Language,
-                CoverUrl = createBookDto.CoverUrl,  // If you're also uploading a cover image
-                ContentUrl = contentUrl,  // PDF URL
-                Price = createBookDto.Price,
-                PublishedAt = createBookDto.PublishedAt
-            };
-
-            var addedBook = await _bookRepository.AddBookAsync(book);
-            return new BookDto
-            {
-                BookId = addedBook.BookId,
-                Title = addedBook.Title,
-                Author = addedBook.Author,
-                Description = addedBook.Description,
-                Language = addedBook.Language,
-                CoverUrl = addedBook.CoverUrl,
-                ContentUrl = addedBook.ContentUrl,  // Return the PDF URL
-                Price = addedBook.Price,
-                PublishedAt = addedBook.PublishedAt
-            };
-        }
+       
         public async Task<IEnumerable<BookDto>> GetBooksAsync()
         {
             var books = await _bookRepository.GetBooksAsync();
