@@ -34,6 +34,7 @@ namespace Albook
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+            builder.Services.AddScoped<IBooksChapterRepository, BooksChapterRepository>();
             
 
             // Register services

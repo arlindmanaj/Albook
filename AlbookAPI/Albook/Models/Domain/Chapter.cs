@@ -8,8 +8,8 @@
         public int ChapterNumber { get; set; }
 
         // Relationships
-        public string BookId { get; set; }
-        public Book Book { get; set; }
+        //public string BookId { get; set; }
+        //public Book Book { get; set; }
         public ICollection<BooksChapter> BooksChapter { get; set; } = new List<BooksChapter>();
     }
 }

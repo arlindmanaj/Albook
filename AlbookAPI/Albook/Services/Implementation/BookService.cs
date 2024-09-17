@@ -11,13 +11,17 @@ namespace Albook.Services.Implementation
 
         private readonly IBookRepository _bookRepository;
         private readonly IBookCategoryRepository _bookCategoryRepository;
-        private readonly IChapterRepository _chapterRepository;
+        private readonly IBooksChapterRepository _booksChapterRepository;
 
-        public BookService(ICategoryRepository categoryRepository, IBookRepository bookRepository, IBookCategoryRepository bookCategoryRepository)
+        public BookService(ICategoryRepository categoryRepository, 
+            IBookRepository bookRepository, 
+            IBookCategoryRepository bookCategoryRepository,
+            IBooksChapterRepository bookChapterRepository)
         {
             _categoryRepository = categoryRepository;
             _bookRepository = bookRepository;
             _bookCategoryRepository = bookCategoryRepository;
+            _booksChapterRepository = bookChapterRepository;
         }
 
 
@@ -30,7 +34,7 @@ namespace Albook.Services.Implementation
             {
                 // Retrieve the categories associated with the book
                 var bookCategories = await _bookCategoryRepository.GetCategoriesByBookIdAsync(book.BookId);
-                var chapters = await _chapterRepository.GetChaptersByBookIdAsync(book.BookId);
+                var booksChapters = await _booksChapterRepository.GetChaptersByBookIdAsync(book.BookId);
 
                 // Map the book and its categories to a BookDto
                 var bookDto = new BookDto
@@ -44,16 +48,16 @@ namespace Albook.Services.Implementation
                     ContentUrl = book.ContentUrl,
                     Price = book.Price,
                     PublishedAt = book.PublishedAt,
-                    Categories = bookCategories.Select(bc => new CategoryDto
+                    Categories = bookCategories.Select(c => new CategoryDto
                     {
-                        CategoryId = bc.CategoryId,
-                        Name = bc.Category.Name
+                        CategoryId = c.CategoryId,
+                        Name = c.Category.Name
                     }).ToList(),
-                    Chapters = chapters.Select(c => new ChapterDto
+                    Chapters = booksChapters.Select(bc => new ChapterDto
                     {
-                        ChapterId = c.ChapterId,
-                        Title = c.Title,
-                        Content = c.Content
+                        ChapterId = bc.Chapter.ChapterId,
+                        Title = bc.Chapter.Title,
+                        Content = bc.Chapter.Content
                     }).ToList()
                 };
 

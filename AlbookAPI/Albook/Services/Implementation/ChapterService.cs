@@ -45,7 +45,8 @@ namespace Albook.Services.Implementation
             {
                 var chapter = new Chapter
                 {
-                    BookId = bookId,
+                    //GET BOOK ID PREJ BooksChapters tabeles jo prej Chapter.Book
+                    //BookId = bookId,
                     Title = $"Chapter {chapterNumber}",
                     Content = content,
                     ChapterNumber = chapterNumber

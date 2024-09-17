@@ -165,9 +165,6 @@ namespace Albook.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChapterId"));
 
-                    b.Property<string>("BookId")
-                        .HasColumnType("nvarchar(255)");
-
                     b.Property<int>("ChapterNumber")
                         .HasColumnType("int");
 
@@ -178,8 +175,6 @@ namespace Albook.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ChapterId");
-
-                    b.HasIndex("BookId");
 
                     b.ToTable("Chapter");
                 });
@@ -318,15 +313,6 @@ namespace Albook.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Chapter");
-                });
-
-            modelBuilder.Entity("Albook.Models.Domain.Chapter", b =>
-                {
-                    b.HasOne("Albook.Models.Domain.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.Transaction", b =>
