@@ -11,6 +11,7 @@ namespace Albook.Services.Implementation
 
         private readonly IBookRepository _bookRepository;
         private readonly IBookCategoryRepository _bookCategoryRepository;
+        private readonly IChapterRepository _chapterRepository;
 
         public BookService(ICategoryRepository categoryRepository, IBookRepository bookRepository, IBookCategoryRepository bookCategoryRepository)
         {
@@ -29,6 +30,7 @@ namespace Albook.Services.Implementation
             {
                 // Retrieve the categories associated with the book
                 var bookCategories = await _bookCategoryRepository.GetCategoriesByBookIdAsync(book.BookId);
+                var chapters = await _chapterRepository.GetChaptersByBookIdAsync(book.BookId);
 
                 // Map the book and its categories to a BookDto
                 var bookDto = new BookDto
@@ -46,6 +48,12 @@ namespace Albook.Services.Implementation
                     {
                         CategoryId = bc.CategoryId,
                         Name = bc.Category.Name
+                    }).ToList(),
+                    Chapters = chapters.Select(c => new ChapterDto
+                    {
+                        ChapterId = c.ChapterId,
+                        Title = c.Title,
+                        Content = c.Content
                     }).ToList()
                 };
 

@@ -30,6 +30,7 @@
 <div class="book-chapters">
   <h3>Table of Contents</h3>
   <ul>
-    <li *ngFor="let chapter of book.chapters">{{ chapter.title }}</li>
+    <li *ngFor="let chapter of book.chapters"><a [routerLink]="['/chapter', chapter.chapterId]">{{ chapter.title }}</a>
+    </li>
   </ul>
 </div>

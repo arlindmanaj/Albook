@@ -21,6 +21,7 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
 import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
+import { ChaptersComponent } from './chapters/chapters.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { EditCategoryComponent } from './categories/edit-category/edit-category/
     NavbarComponent,
     ManageCategoriesComponent,
     AddCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    ChaptersComponent
 
   ],
   imports: [

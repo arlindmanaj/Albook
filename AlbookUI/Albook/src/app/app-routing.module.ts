@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
@@ -16,6 +16,7 @@ import { EditUserComponent } from './Users/edit-user/edit-user.component';
 import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
 import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
+import { ChaptersComponent } from './chapters/chapters.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,8 +33,9 @@ const routes: Routes = [
   { path: 'admin/edit-book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'admin/manage-categories', component: ManageCategoriesComponent },
-  {path: 'admin/add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'admin/add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: 'admin/edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'chapter/:chapterId', component: ChaptersComponent },
 
   //Wildcard route for handling unmatched routes
   {path: '', component: HomeComponent},

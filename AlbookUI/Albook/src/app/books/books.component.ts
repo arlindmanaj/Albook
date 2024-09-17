@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../Services/book-services/book.service';
 import { Book } from '../../Models/book-models/book.model';
 import { AuthService } from '../../Services/auth-services/auth.service';
 import { Category } from '../../Models/category-models/category.model';
 import { JwtService } from './../../Services/auth-services/jwt.service';
+
 
 @Component({
   selector: 'app-books',
@@ -15,8 +16,9 @@ export class BooksComponent implements OnInit {
   isAdminRole: boolean = false;
   books: Book[] = [];
   categories: Category[] = [];
+  book: Book | undefined;
 
-  constructor(private bookService: BookService, private router: Router, private authService: AuthService, private jwtService: JwtService) { }
+  constructor(private route: ActivatedRoute,private bookService: BookService, private router: Router, private authService: AuthService, private jwtService: JwtService) { }
 
   ngOnInit(): void {
     this.bookService.getAllBooks()
@@ -24,7 +26,24 @@ export class BooksComponent implements OnInit {
         this.books = data;
       });
       this.checkAdminRole();
+
+      const bookId = this.route.snapshot.paramMap.get('id');
+      if (bookId) {
+        this.bookService.getBookById(bookId).subscribe({
+          next: (data) => {
+            this.book = data;
+            console.log(this.book);  // Check the full book object
+            console.log(this.book.chapters);  // Specifically check chapters
+          },
+          error: (error) => {
+            console.error('Error fetching book details:', error);
+          }
+        });
+      } else {
+        console.error('Book ID is null');
+      }
   }
+  
   addBook(): void {
     this.router.navigate(['admin/add-book']);
   }

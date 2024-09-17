@@ -1,0 +1,9 @@
+<div *ngIf="chapter">
+    <h2>{{ chapter.title }}</h2>
+    <p>{{ chapter.content }}</p>
+  </div>
+  
+  <div *ngIf="!chapter">
+    <p>Loading chapter content...</p>
+  </div>
+  
