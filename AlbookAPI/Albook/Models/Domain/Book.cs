@@ -19,6 +19,6 @@
         public ICollection<Translation> Translations { get; set; }
 
         public ICollection<BooksCategories> BooksCategories { get; set; }
-        public ICollection<Chapter> Chapter { get; set; }
+        public ICollection<BooksChapter> BooksChapter { get; set; }
     }
 }

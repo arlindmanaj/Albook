@@ -22,7 +22,10 @@ namespace Albook.Repositories.Implementation
         //FIX
         public async Task<Book> GetBookByIdAsync(string bookId)
         {
-            return await _context.Books.FirstOrDefaultAsync(x => x.BookId == bookId);
+            return await _context.Books
+            .Include(b => b.BooksChapter)
+            .ThenInclude(bc => bc.Chapter)
+            .FirstOrDefaultAsync(b => b.BookId == bookId);
         }
 
         public async Task<Book> AddBookAsync(Book book)

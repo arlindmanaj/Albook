@@ -17,9 +17,9 @@ namespace Albook.Repositories.Implementation
        
         public async Task<List<Chapter>> GetChaptersByBookIdAsync(string bookId)
         {
-            return await _context.Chapter
+            return await _context.BooksChapters
                 .Where(c => c.BookId == bookId)
-                .OrderBy(c => c.ChapterNumber)
+                .Select(bc => bc.Chapter)
                 .ToListAsync();
         }
 

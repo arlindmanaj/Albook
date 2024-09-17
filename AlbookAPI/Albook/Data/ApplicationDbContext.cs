@@ -16,6 +16,7 @@ namespace Albook.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<BooksCategories> BooksCategories { get; set; }
         public DbSet<Chapter> Chapter { get; set; }
+        public DbSet<BooksChapter> BooksChapters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

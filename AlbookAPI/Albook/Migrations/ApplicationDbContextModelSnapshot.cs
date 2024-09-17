@@ -118,6 +118,29 @@ namespace Albook.Migrations
                     b.ToTable("BooksCategories", (string)null);
                 });
 
+            modelBuilder.Entity("Albook.Models.Domain.BooksChapter", b =>
+                {
+                    b.Property<int>("BooksChapterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BooksChapterId"));
+
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("ChapterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BooksChapterId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("ChapterId");
+
+                    b.ToTable("BooksChapters");
+                });
+
             modelBuilder.Entity("Albook.Models.Domain.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -280,10 +303,27 @@ namespace Albook.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Albook.Models.Domain.BooksChapter", b =>
+                {
+                    b.HasOne("Albook.Models.Domain.Book", "Book")
+                        .WithMany("BooksChapter")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("Albook.Models.Domain.Chapter", "Chapter")
+                        .WithMany("BooksChapter")
+                        .HasForeignKey("ChapterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Chapter");
+                });
+
             modelBuilder.Entity("Albook.Models.Domain.Chapter", b =>
                 {
                     b.HasOne("Albook.Models.Domain.Book", "Book")
-                        .WithMany("Chapter")
+                        .WithMany()
                         .HasForeignKey("BookId");
 
                     b.Navigation("Book");
@@ -311,7 +351,7 @@ namespace Albook.Migrations
 
                     b.Navigation("BooksCategories");
 
-                    b.Navigation("Chapter");
+                    b.Navigation("BooksChapter");
 
                     b.Navigation("Transactions");
 
@@ -321,6 +361,11 @@ namespace Albook.Migrations
             modelBuilder.Entity("Albook.Models.Domain.Category", b =>
                 {
                     b.Navigation("BooksCategories");
+                });
+
+            modelBuilder.Entity("Albook.Models.Domain.Chapter", b =>
+                {
+                    b.Navigation("BooksChapter");
                 });
 
             modelBuilder.Entity("Albook.Models.Domain.User", b =>
