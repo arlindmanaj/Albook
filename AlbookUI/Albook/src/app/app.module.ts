@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeComponent } from './home/home.component';
-import { BooksComponent } from './books/books.component';
-import { BookDetailsComponent } from './book-details/book-details.component';
+import { BooksComponent } from './books/book-component/books.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { LoginComponent } from './login/login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { AddBookComponent } from './add-book/add-book.component';
-import { EditBookComponent } from './edit-book/edit-book.component';
-import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { AddBookComponent } from './books/add-book/add-book.component';
+import { EditBookComponent } from './books/edit-book/edit-book.component';
+import { DeleteBookComponent } from './books/delete-book/delete-book.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
@@ -49,7 +49,7 @@ import { ChaptersComponent } from './chapters/chapters.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    
+
   ],
   providers: [
     provideClientHydration(),

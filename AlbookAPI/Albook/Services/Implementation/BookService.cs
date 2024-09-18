@@ -26,6 +26,7 @@ namespace Albook.Services.Implementation
 
 
         public async Task<IEnumerable<BookDto>> GetBooksAsync()
+        
         {
             var books = await _bookRepository.GetBooksAsync();
             var response = new List<BookDto>();
@@ -73,6 +74,7 @@ namespace Albook.Services.Implementation
             if (book == null) return null;
 
             var bookCategories = await _bookCategoryRepository.GetCategoriesByBookIdAsync(book.BookId);
+            var booksChapters = await _booksChapterRepository.GetChaptersByBookIdAsync(book.BookId);
 
             return new BookDto
             {
@@ -88,7 +90,13 @@ namespace Albook.Services.Implementation
                 {
                     CategoryId = bc.CategoryId,
                     Name = bc.Category.Name
-                }).ToList()
+                }).ToList(),
+                 Chapters = booksChapters.Select(bc => new ChapterDto
+                 {
+                     ChapterId = bc.Chapter.ChapterId,
+                     Title = bc.Chapter.Title,
+                     Content = bc.Chapter.Content
+                 }).ToList()
             };
         }
 

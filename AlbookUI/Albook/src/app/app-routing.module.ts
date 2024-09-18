@@ -1,15 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { BooksComponent } from './books/books.component';
-import { BookDetailsComponent } from './book-details/book-details.component';
+import { BooksComponent } from './books/book-component/books.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { LoginComponent } from './login/login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { FormsModule } from '@angular/forms'
-import { AddBookComponent } from './add-book/add-book.component';
-import { EditBookComponent } from './edit-book/edit-book.component';
-import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { AddBookComponent } from './books/add-book/add-book.component';
+import { EditBookComponent } from './books/edit-book/edit-book.component';
+import { DeleteBookComponent } from './books/delete-book/delete-book.component';
 import { ManageUsersComponent } from './Users/manage-users/manage-users.component';
 import { AddUserComponent } from './Users/add-user/add-user.component';
 import { EditUserComponent } from './Users/edit-user/edit-user.component';
