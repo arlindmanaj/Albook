@@ -104,7 +104,7 @@ namespace Albook.Services.Implementation
         {
             var book = new Book
             {
-                BookId = Guid.NewGuid().ToString(), // Assuming BookId is a GUID or similar unique identifier
+                BookId = Guid.NewGuid().ToString(),
                 Title = createBookDto.Title,
                 Author = createBookDto.Author,
                 Description = createBookDto.Description,
@@ -112,7 +112,7 @@ namespace Albook.Services.Implementation
                 CoverUrl = createBookDto.CoverUrl,
                 ContentUrl = createBookDto.ContentUrl,
                 Price = createBookDto.Price,
-                PublishedAt = DateTime.Now, // Assuming new books have a current timestamp
+                PublishedAt = DateTime.Now,
                 Translations = createBookDto.Translations
 
             };

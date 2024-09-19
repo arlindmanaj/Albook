@@ -21,8 +21,9 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
 import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
-import { ChaptersComponent } from './chapters/chapters.component';
-
+import { ChaptersComponent } from './chapters/chapters-component/chapters.component';
+import { EditChapterComponent } from './chapters/edit-chapter/edit-chapter.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -42,13 +43,17 @@ import { ChaptersComponent } from './chapters/chapters.component';
     ManageCategoriesComponent,
     AddCategoryComponent,
     EditCategoryComponent,
-    ChaptersComponent
+    ChaptersComponent,
+    EditChapterComponent
 
   ],
   imports: [
+
+
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MarkdownModule.forRoot(),
 
   ],
   providers: [

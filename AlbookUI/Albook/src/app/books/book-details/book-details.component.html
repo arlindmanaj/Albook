@@ -30,7 +30,29 @@
 <div class="book-chapters">
   <h3>Table of Contents</h3>
   <ul>
-    <li *ngFor="let chapter of book.chapters"><a [routerLink]="['/chapter', chapter.chapterId]">{{ chapter.title }}</a>
+    <li *ngFor="let chapter of book.chapters">
+      <a [routerLink]="['/chapter', chapter.chapterId]">{{ chapter.title }}</a>
+
+      <!-- Show Edit and Delete buttons only if the user is an admin -->
+      <button *ngIf="isAdmin" (click)="navigateToEditChapter(chapter)">Edit</button>
+      <button *ngIf="isAdmin" (click)="deleteChapter(chapter.chapterId)">Delete</button>
     </li>
   </ul>
+</div>
+
+<!-- Form to Add or Edit Chapter (only for admins) -->
+<div *ngIf="isAdmin && showChapterForm">
+  <h3>Add Chapter</h3>
+  <form (ngSubmit)="onAddChapter()">
+    <label>Chapter Title</label>
+    <input [(ngModel)]="chapter.title" name="title" required>
+
+    <label>Chapter Content</label>
+    <textarea [(ngModel)]="chapter.content" name="content" required></textarea>
+
+    <label>Chapter Number</label>
+    <input type="number" [(ngModel)]="chapter.chapterNumber" name="chapterNumber" required>
+
+    <button type="submit">Add Chapter</button>
+  </form>
 </div>

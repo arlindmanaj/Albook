@@ -16,7 +16,8 @@ import { EditUserComponent } from './Users/edit-user/edit-user.component';
 import { ManageCategoriesComponent } from './categories/manage-categories/manage-categories/manage-categories.component';
 import { AddCategoryComponent } from './categories/add-category/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/edit-category/edit-category/edit-category.component';
-import { ChaptersComponent } from './chapters/chapters.component';
+import { ChaptersComponent } from './chapters/chapters-component/chapters.component';
+import { EditChapterComponent } from './chapters/edit-chapter/edit-chapter.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,8 +25,8 @@ const routes: Routes = [
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'books/edit-book', component: EditBookComponent, canActivate: [AuthGuard]  },
-  { path: 'books/delete-book', component: DeleteBookComponent, canActivate: [AuthGuard]  },
+  { path: 'books/edit-book', component: EditBookComponent, canActivate: [AuthGuard] },
+  { path: 'books/delete-book', component: DeleteBookComponent, canActivate: [AuthGuard] },
   { path: 'admin/manage-users', component: ManageUsersComponent },
   { path: 'admin/add-user', component: AddUserComponent },
   { path: 'admin/edit-user/:id', component: EditUserComponent },
@@ -36,15 +37,17 @@ const routes: Routes = [
   { path: 'admin/add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: 'admin/edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
   { path: 'chapter/:chapterId', component: ChaptersComponent },
+  {path:  'admin/edit-chapter/:chapterId', component: EditChapterComponent, canActivate: [AuthGuard] },
+  
 
   //Wildcard route for handling unmatched routes
-  {path: '', component: HomeComponent},
-  
+  { path: '', component: HomeComponent },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), FormsModule],
-  
-exports: [RouterModule, FormsModule]
+
+  exports: [RouterModule, FormsModule]
 })
 export class AppRoutingModule { }

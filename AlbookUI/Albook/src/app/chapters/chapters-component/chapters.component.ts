@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChapterService } from '../../Services/chapter-service/chapters.service';
-import { Chapter } from '../../Models/chapter-models/chapter.model';
-
+import { ChapterService } from '../../../Services/chapter-service/chapters.service';
+import { Chapter } from '../../../Models/chapter-models/chapter.model';
 @Component({
   selector: 'app-chapters',
   templateUrl: './chapters.component.html',

@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@auth0/angular-jwt": "^5.2.0",
-    "angular-jwt": "github:auth0/angular-jwt"
+    "angular-jwt": "github:auth0/angular-jwt",
+    "marked": "^12.0.0",
+    "ngx-markdown": "^18.0.0"
   }
 }

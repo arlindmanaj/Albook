@@ -1,0 +1,46 @@
+/* Container for the input section and preview section */
+.edit-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  /* Input section for title and markdown content */
+  .input-section {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  /* Preview section for live markdown display */
+  .preview-section {
+    flex: 1;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+  }
+  
+  /* Full width for text inputs */
+  input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Submit button styling */
+  .submit-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

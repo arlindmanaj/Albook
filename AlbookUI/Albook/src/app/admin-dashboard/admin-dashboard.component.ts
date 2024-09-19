@@ -22,4 +22,5 @@ export class AdminDashboardComponent {
   navigateToCategories(path: string): void {
     this.router.navigate([`/admin/manage-categories`]);
   }
+  
 }
