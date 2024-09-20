@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChapterService } from '../../../Services/chapter-service/chapters.service';
 import { Chapter } from '../../../Models/chapter-models/chapter.model';
+import { UpdateChapter } from '../../../Models/chapter-models/update-chapter.model';
 
 @Component({
   selector: 'app-edit-chapter',
@@ -9,46 +10,50 @@ import { Chapter } from '../../../Models/chapter-models/chapter.model';
   styleUrls: ['./edit-chapter.component.css']
 })
 export class EditChapterComponent implements OnInit {
-  chapterId: string = '';
+  chapterId: number = 0;
   title: string = '';
   content: string = '';
   chapterNumber: number = 0;
-  bookId: string = '';
+  bookId: string | null = null;
 
   constructor(
     private chapterService: ChapterService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.chapterId = this.route.snapshot.paramMap.get('chapterId')!;
+    this.bookId = this.route.snapshot.paramMap.get('bookId')!;
   }
 
   ngOnInit(): void {
-    // Fetch chapter details based on chapterId
+    this.chapterId = +this.route.snapshot.paramMap.get('chapterId')!;
+
+    // Retrieve bookId from local storage
+    this.bookId = localStorage.getItem('currentBookId');
+
+    console.log('Retrieved bookId from localStorage:', this.bookId);
+
     this.chapterService.getChapterById(this.chapterId)
-      .subscribe((chapter: Chapter) => {
+      .subscribe((chapter) => {
         this.title = chapter.title;
         this.content = chapter.content;
         this.chapterNumber = chapter.chapterNumber;
-        this.bookId = chapter.bookId!;
       });
   }
 
   // Handle form submission
   onSubmit(): void {
-    const updatedChapter: Chapter = {
-      chapterId: parseInt(this.chapterId, 10),
+
+
+
+    const updatedChapter: UpdateChapter = {
       title: this.title,
       content: this.content,
       chapterNumber: this.chapterNumber,
-      bookId: this.bookId,
-
-
 
     };
     console.log(this.bookId);
     console.log(updatedChapter);
-    this.chapterService.updateChapter(updatedChapter.chapterId, updatedChapter)
+    this.chapterService.updateChapter(this.chapterId, updatedChapter)
       .subscribe(() => {
         if (this.bookId) {
           console.log('Navigating to book details with bookId:', this.bookId);

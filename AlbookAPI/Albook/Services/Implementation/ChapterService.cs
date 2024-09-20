@@ -1,4 +1,5 @@
 ﻿using Albook.Models.Domain;
+using Albook.Models.DTO;
 using Albook.Repositories.Interfaces;
 using Albook.Services.Interfaces;
 using System.Text.RegularExpressions;
@@ -57,24 +58,29 @@ namespace Albook.Services.Implementation
             }
         }
 
-       
-        public async Task UpdateChapterAsync(int chapterId, Chapter updatedChapter)
+
+        public async Task UpdateChapterAsync(int chapterId, UpdateChapterDto updatedChapterDto)
         {
+            // Fetch the existing chapter entity from the database
             var existingChapter = await _chapterRepository.GetChapterByIdAsync(chapterId);
+
             if (existingChapter == null)
             {
                 _logger.LogWarning($"Chapter with ID {chapterId} not found.");
                 return;
             }
 
-            existingChapter.Title = updatedChapter.Title;
-            existingChapter.Content = updatedChapter.Content;
-            existingChapter.ChapterNumber = updatedChapter.ChapterNumber;
+            // Update the entity with the values from the DTO
+            existingChapter.Title = updatedChapterDto.Title;
+            existingChapter.Content = updatedChapterDto.Content;
+            existingChapter.ChapterNumber = updatedChapterDto.ChapterNumber;
 
+            // Pass the updated entity to the repository to save
             await _chapterRepository.UpdateChapterAsync(existingChapter);
         }
 
-       
+
+
         public async Task DeleteChapterAsync(int chapterId)
         {
             await _chapterRepository.DeleteChapterAsync(chapterId);

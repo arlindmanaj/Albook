@@ -12,8 +12,9 @@ import { AuthService } from '../../../Services/auth-services/auth.service';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
+  bookId: string | null = null;
   book: any;
-  chapters: Chapter[] = [];
+  chapters?: Chapter[] = [];
   chapter: Chapter = { title: '', content: '', bookId: '', chapterId: 0, chapterNumber: 0 };
   isAdmin: boolean = false; // Based on user's role
   isEditMode: boolean = false;
@@ -22,11 +23,15 @@ export class BookDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router, private bookService: BookService, private chapterService: ChapterService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    const bookId = this.route.snapshot.paramMap.get('id');
+    const bookId = this.route.snapshot.paramMap.get('id');  // Get bookId from route
     if (bookId) {
       this.bookService.getBookById(bookId).subscribe({
         next: (data) => {
           this.book = data;
+          console.log('Book details:', this.book);
+
+          // Store bookId in local storage for later use
+          localStorage.setItem('currentBookId', bookId);
         },
         error: (error) => {
           console.error('Error fetching book details:', error);
@@ -35,7 +40,6 @@ export class BookDetailsComponent implements OnInit {
     } else {
       console.error('Book ID is null');
     }
-
     this.isAdmin = this.authService.isAdmin();
   }
   toggleChapterForm() {
@@ -58,7 +62,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   navigateToEditChapter(chapter: Chapter) {
-    this.router.navigate(['admin/edit-chapter', chapter.chapterId]);
+
+    this.bookId = this.book.bookId;
+    console.log('Selected chapter:', chapter);  
+    console.log('Chapter Book ID:', this.bookId);  
+    this.router.navigate([`/books/${this.bookId}/edit-chapter/${chapter.chapterId}`]);
   }
   onAddChapter() {
     this.chapter.bookId = this.book.bookId;

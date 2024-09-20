@@ -40,6 +40,10 @@
   </ul>
 </div>
 
+<div *ngIf="!book.chapters || book.chapters.length === 0">
+  <p>No chapters available for this book.</p>
+</div>
+
 <!-- Form to Add or Edit Chapter (only for admins) -->
 <div *ngIf="isAdmin && showChapterForm">
   <h3>Add Chapter</h3>

@@ -13,7 +13,7 @@ export class ChaptersComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private chapterService: ChapterService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -22,7 +22,7 @@ export class ChaptersComponent implements OnInit {
     });
   }
 
-  getChapter(chapterId: string): void {
+  getChapter(chapterId: number): void {
     this.chapterService.getChapterById(chapterId).subscribe(
       (data: Chapter) => {
         this.chapter = data;

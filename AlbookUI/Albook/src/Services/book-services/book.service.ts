@@ -9,7 +9,7 @@ import { UpdateBookRequest } from '../../Models/book-models/update-book-request.
   providedIn: 'root'
 })
 export class BookService {
-
+  private bookId: string = '';
   constructor(private http: HttpClient) { }
 
   addBook(model: AddBookRequest): Observable<void> {
@@ -46,5 +46,13 @@ export class BookService {
       'Authorization': `Bearer ${token}`
     };
     return this.http.delete<void>(`${environment.apiBaseUrl}/api/Books/${id}`, { headers });
+  }
+
+  setBookId(id: string): void {
+    this.bookId = id;
+  }
+
+  getBookId(): string {
+    return this.bookId;
   }
 }

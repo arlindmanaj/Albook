@@ -1,4 +1,6 @@
 ﻿using Albook.Models.Domain;
+using Albook.Models.DTO;
+using Albook.Repositories.Interfaces;
 using Albook.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +13,11 @@ namespace Albook.Controllers
     {
        
             private readonly IChapterService _chapterService;
-
+           
             public ChapterController(IChapterService chapterService)
             {
                 _chapterService = chapterService;
+
             }
 
             // 1. Get all chapters for a specific book
@@ -63,21 +66,11 @@ namespace Albook.Controllers
 
             // 4. Update a specific chapter
             [HttpPut("{chapterId}")]
-            public async Task<IActionResult> UpdateChapter(int chapterId, [FromBody] Chapter updatedChapter)
+            public async Task<IActionResult> UpdateChapter(int chapterId, [FromBody] UpdateChapterDto updatedChapterDto)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                await _chapterService.UpdateChapterAsync(chapterId, updatedChapterDto);
 
-                var existingChapter = await _chapterService.GetChapterByIdAsync(chapterId);
-                if (existingChapter == null)
-                {
-                    return NotFound(new { message = "Chapter not found." });
-                }
-
-                await _chapterService.UpdateChapterAsync(chapterId, updatedChapter);
-                return NoContent(); // 204 No Content, indicating successful update with no body.
+                return Ok(new { message = "Chapter updated successfully" });
             }
 
             // 5. Delete a specific chapter

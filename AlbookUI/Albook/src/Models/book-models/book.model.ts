@@ -1,5 +1,6 @@
 import { Category } from "../category-models/category.model";
 import { Translation } from "../../app/Translations/translations/translations.model";
+import { Chapter } from "../chapter-models/chapter.model";
 
 export interface Book {
   bookId: string;
@@ -15,4 +16,5 @@ export interface Book {
   translations: Translation[];
 
   categories: Category[];
+  chapters : Chapter[];
 }

@@ -1,25 +1,18 @@
-<div class="edit-container">
-  <!-- Left side: Input section -->
-  <div class="input-section">
-    <h3>Edit Chapter: {{ title }}</h3>
-    
-    <!-- Chapter Title -->
-    <label for="chapterTitle">Chapter Title</label>
-    <input id="chapterTitle" [(ngModel)]="title" name="title" required />
+<form (ngSubmit)="onSubmit()">
+  <label>Chapter Title</label>
+  <input [(ngModel)]="title" name="title" required>
 
-    <!-- Chapter Content (Markdown) -->
-    <label for="chapterContent">Chapter Content (Markdown)</label>
-    <textarea id="chapterContent" [(ngModel)]="content" name="content" required></textarea>
-  </div>
+  <label>Chapter Content</label>
+  <textarea [(ngModel)]="content" name="content" required></textarea>
 
-  <!-- Right side: Live Preview section -->
+  <label>Chapter Number</label>
+  <input type="number" [(ngModel)]="chapterNumber" name="chapterNumber" required>
+
   <div class="preview-section">
     <h3>Live Preview</h3>
     <markdown [data]="content"></markdown> <!-- NGX-Markdown Preview -->
   </div>
-</div>
 
-<!-- Submit button -->
-<div class="submit-section">
-  <button type="submit" (click)="onSubmit()">Save Changes</button>
-</div>
+
+  <button type="submit">Save Changes</button>
+</form>

@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'admin/add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: 'admin/edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
   { path: 'chapter/:chapterId', component: ChaptersComponent },
-  {path:  'admin/edit-chapter/:chapterId', component: EditChapterComponent, canActivate: [AuthGuard] },
+  { path:  'books/:bookId/edit-chapter/:chapterId', component: EditChapterComponent, canActivate: [AuthGuard] },
   
 
   //Wildcard route for handling unmatched routes
