@@ -13,7 +13,9 @@ import { AuthService } from '../../../Services/auth-services/auth.service';
 })
 export class BookDetailsComponent implements OnInit {
   bookId: string | null = null;
-  book: any;
+  book: any = {
+    chapters: []
+  }
   chapters?: Chapter[] = [];
   chapter: Chapter = { title: '', content: '', bookId: '', chapterId: 0, chapterNumber: 0 };
   isAdmin: boolean = false; // Based on user's role
